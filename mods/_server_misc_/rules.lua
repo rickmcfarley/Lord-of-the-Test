@@ -35,3 +35,4 @@ minetest.register_chatcommand("rules",{
 		minetest.show_formspec(name,"rules",rules.formspec(player,params))	
 	end,
 })
+
