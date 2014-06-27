@@ -98,6 +98,59 @@ minetest.register_node("bones:bones", {
 	end,
 })
 
+minetest.register_on_dieplayer(function(player)
+	if minetest.setting_getbool("creative_mode") then
+		return
+	end
+	
+	local pos = player:getpos()
+	pos.x = math.floor(pos.x+0.5)
+	pos.y = math.floor(pos.y+0.5)
+	pos.z = math.floor(pos.z+0.5)
+	local param2 = minetest.dir_to_facedir(player:get_look_dir())
+	
+	local nn = minetest.get_node(pos).name
+	if minetest.registered_nodes[nn].can_dig and
+		not minetest.registered_nodes[nn].can_dig(pos, player) then
+		local player_inv = player:get_inventory()
+
+		for i=1,player_inv:get_size("main") do
+			player_inv:set_stack("main", i, nil)
+		end
+		for i=1,player_inv:get_size("craft") do
+			player_inv:set_stack("craft", i, nil)
+		end
+		return
+	end
+	
+	minetest.dig_node(pos)
+	minetest.add_node(pos, {name="bones:bones", param2=param2})
+	
+	local meta = minetest.get_meta(pos)
+	local inv = meta:get_inventory()
+	local player_inv = player:get_inventory()
+	inv:set_size("main", 8*4)
+	
+	local empty_list = inv:get_list("main")
+	inv:set_list("main", player_inv:get_list("main"))
+	player_inv:set_list("main", empty_list)
+	
+	for i=1,player_inv:get_size("craft") do
+		inv:add_item("main", player_inv:get_stack("craft", i))
+		player_inv:set_stack("craft", i, nil)
+	end
+	
+	meta:set_string("formspec", "size[8,9;]"..
+			"list[current_name;main;0,0;8,4;]"..
+			"list[current_player;main;0,5;8,4;]")
+	meta:set_string("infotext", player:get_player_name().."'s fresh bones")
+	meta:set_string("owner", player:get_player_name())
+	meta:set_int("time", 0)
+	
+	local timer  = minetest.get_node_timer(pos)
+	timer:start(10)
+end)
+
 local function growgen(pointed_thing)
 pos = pointed_thing.under
 n = minetest.env:get_node(pos)
