@@ -3,6 +3,7 @@ dofile(minetest.get_modpath(minetest.get_current_modname()).."/dwarf_teleport.lu
 dofile(minetest.get_modpath(minetest.get_current_modname()).."/elf_teleport.lua")
 dofile(minetest.get_modpath(minetest.get_current_modname()).."/rohan_teleport.lua")
 dofile(minetest.get_modpath(minetest.get_current_modname()).."/gondor_teleport.lua")
+dofile(minetest.get_modpath(minetest.get_current_modname()).."/mordor_teleport.lua")
 dofile(minetest.get_modpath(minetest.get_current_modname()).."/trophy.lua")
 
 minetest.register_privilege("dwarven", {
@@ -30,9 +31,29 @@ minetest.register_privilege("forsaken", {
 	give_to_singleplayer= false,
 })
 
+minetest.register_privilege("mordor", {
+	description = "Citizen of the Kingdom of Mordor",
+	give_to_singleplayer= false,
+})
+
 minetest.register_tool("lottserver:durin_axe", {
 	description = "Durin's Axe",
 	inventory_image = "lottserver_durinaxe.png",
+	range = 2,
+	tool_capabilities = {
+		full_punch_interval = 2,
+		max_drop_level=1,
+		groupcaps={
+			core_structure={times={[1]=10.30, [2]=20.40, [3]=30.40}, uses=5, maxlevel=1},
+               snappy={times={[1]=0.70, [2]=0.80, [3]=0.25}, uses=80, maxlevel=3},
+		},
+		damage_groups = {core_structure=.75, fleshy=8},
+	},
+})
+
+minetest.register_tool("lottserver:morgul_blade", {
+	description = "Morgul Blade",
+	inventory_image = "lottserver_morgulblade.png",
 	range = 2,
 	tool_capabilities = {
 		full_punch_interval = 2,
@@ -61,7 +82,7 @@ minetest.register_tool("lottserver:herugrim", {
 })
 
 minetest.register_tool("lottserver:anduril", {
-	description = "Anduril'",
+	description = "Anduril",
 	inventory_image = "lottserver_anduril.png",
 	range = 2,
 	tool_capabilities = {

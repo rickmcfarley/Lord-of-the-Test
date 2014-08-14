@@ -88,6 +88,11 @@ minetest.register_craftitem("lottmobs:meat_raw", {
 	inventory_image = "lottmobs_meat_raw.png",
 })
 
+minetest.register_craftitem("lottmobs:catninja", {
+	description = "Meow!",
+	inventory_image = "lottmobs_cat.png",
+})
+
 minetest.register_craft({
 	type = "cooking",
 	output = "lottmobs:meat",
@@ -581,6 +586,7 @@ lottmobs:register_mob("lottmobs:orc", {
 	textures = {"lottmobs_orc.png"},
 	makes_footstep_sound = true,
 	view_range = 15,
+	follow = "lottmobs:catninja",
 	walk_velocity = 1,
      armor = 200,
 	run_velocity = 3,
@@ -635,6 +641,7 @@ lottmobs:register_mob("lottmobs:uruk_hai", {
 	makes_footstep_sound = true,
 	view_range = 15,
 	walk_velocity = 1,
+	follow = "lottmobs:catninja",
      armor = 100,
 	run_velocity = 3,
 	damage = 4,
@@ -687,6 +694,7 @@ lottmobs:register_mob("lottmobs:battle_troll", {
 	textures = {"lottmobs_battle_troll.png"},
 	visual_size = {x=8, y=8},
 	makes_footstep_sound = true,
+	follow = "lottmobs:catninja",
 	view_range = 15,
 	walk_velocity = 1,
 	run_velocity = 1,
