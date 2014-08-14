@@ -41,7 +41,7 @@ minetest.register_tool("lottserver:durin_axe", {
 			core_structure={times={[1]=10.30, [2]=20.40, [3]=30.40}, uses=5, maxlevel=1},
                snappy={times={[1]=0.70, [2]=0.80, [3]=0.25}, uses=80, maxlevel=3},
 		},
-		damage_groups = {core_structure=.75}, {fleshy=8},
+		damage_groups = {core_structure=.75, fleshy=8},
 	},
 })
 
@@ -56,7 +56,7 @@ minetest.register_tool("lottserver:herugrim", {
 			core_structure={times={[1]=10.30, [2]=20.40, [3]=30.40}, uses=5, maxlevel=1},
                snappy={times={[1]=0.70, [2]=0.80, [3]=0.25}, uses=80, maxlevel=3},
 		},
-		damage_groups = {core_structure=.75}, {fleshy=8},
+		damage_groups = {core_structure=.75, fleshy=8},
 	},
 })
 
@@ -71,7 +71,7 @@ minetest.register_tool("lottserver:anduril", {
 			core_structure={times={[1]=10.30, [2]=20.40, [3]=30.40}, uses=5, maxlevel=1},
                snappy={times={[1]=0.70, [2]=0.80, [3]=0.25}, uses=80, maxlevel=3},
 		},
-		damage_groups = {core_structure=.75}, {fleshy=8},
+		damage_groups = {core_structure=.75, fleshy=8},
 	},
 })
 
@@ -86,7 +86,7 @@ minetest.register_tool("lottserver:aeglos", {
 			core_structure={times={[1]=10.30, [2]=20.40, [3]=30.40}, uses=5, maxlevel=1},
                snappy={times={[1]=0.70, [2]=0.80, [3]=0.25}, uses=80, maxlevel=3},
 		},
-		damage_groups = {core_structure=.75}, {fleshy=8},
+		damage_groups = {core_structure=.75, fleshy=8},
 	},
 })
 
@@ -101,7 +101,7 @@ minetest.register_tool("lottserver:glamdring", {
 			core_structure={times={[1]=0.30, [2]=0.40, [3]=0.40}, uses=5, maxlevel=1},
                snappy={times={[1]=0.70, [2]=0.80, [3]=0.25}, uses=80, maxlevel=3},
 		},
-		damage_groups = {core_structure=.75}, {fleshy=8},
+		damage_groups = {core_structure=.75, fleshy=8},
 	},
 })
 
@@ -116,7 +116,7 @@ minetest.register_tool("lottserver:greathammer", {
 			core_structure={times={[1]=10.30, [2]=20.40, [3]=30.40}, uses=5, maxlevel=1},
                snappy={times={[1]=0.70, [2]=0.80, [3]=0.25}, uses=80, maxlevel=3},
 		},
-		damage_groups = {core_structure=.75}, {fleshy=8},
+		damage_groups = {core_structure=.75, fleshy=8},
 	},
 })
 
