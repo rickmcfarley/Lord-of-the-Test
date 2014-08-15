@@ -44,8 +44,7 @@ minetest.register_tool("lottserver:durin_axe", {
 		full_punch_interval = 2,
 		max_drop_level=1,
 		groupcaps={
-			core_structure={times={[1]=10.30, [2]=20.40, [3]=30.40}, uses=5, maxlevel=1},
-               snappy={times={[1]=0.70, [2]=0.80, [3]=0.25}, uses=80, maxlevel=3},
+			core_structure={times={[1]=10.30, [2]=20.40, [3]=30.40}, uses=0, maxlevel=1},
 		},
 		damage_groups = {core_structure=.75, fleshy=8},
 	},
@@ -59,8 +58,7 @@ minetest.register_tool("lottserver:morgul_blade", {
 		full_punch_interval = 2,
 		max_drop_level=1,
 		groupcaps={
-			core_structure={times={[1]=10.30, [2]=20.40, [3]=30.40}, uses=5, maxlevel=1},
-               snappy={times={[1]=0.70, [2]=0.80, [3]=0.25}, uses=80, maxlevel=3},
+			core_structure={times={[1]=10.30, [2]=20.40, [3]=30.40}, uses=0, maxlevel=1},
 		},
 		damage_groups = {core_structure=.75, fleshy=8},
 	},
@@ -74,8 +72,7 @@ minetest.register_tool("lottserver:herugrim", {
 		full_punch_interval = 2,
 		max_drop_level=1,
 		groupcaps={
-			core_structure={times={[1]=10.30, [2]=20.40, [3]=30.40}, uses=5, maxlevel=1},
-               snappy={times={[1]=0.70, [2]=0.80, [3]=0.25}, uses=80, maxlevel=3},
+			core_structure={times={[1]=10.30, [2]=20.40, [3]=30.40}, uses=0, maxlevel=1},
 		},
 		damage_groups = {core_structure=.75, fleshy=8},
 	},
@@ -89,8 +86,7 @@ minetest.register_tool("lottserver:anduril", {
 		full_punch_interval = 2,
 		max_drop_level=1,
 		groupcaps={
-			core_structure={times={[1]=10.30, [2]=20.40, [3]=30.40}, uses=5, maxlevel=1},
-               snappy={times={[1]=0.70, [2]=0.80, [3]=0.25}, uses=80, maxlevel=3},
+			core_structure={times={[1]=10.30, [2]=20.40, [3]=30.40}, uses=0, maxlevel=1},
 		},
 		damage_groups = {core_structure=.75, fleshy=8},
 	},
@@ -104,8 +100,7 @@ minetest.register_tool("lottserver:aeglos", {
 		full_punch_interval = 2,
 		max_drop_level=1,
 		groupcaps={
-			core_structure={times={[1]=10.30, [2]=20.40, [3]=30.40}, uses=5, maxlevel=1},
-               snappy={times={[1]=0.70, [2]=0.80, [3]=0.25}, uses=80, maxlevel=3},
+			core_structure={times={[1]=10.30, [2]=20.40, [3]=30.40}, uses=0, maxlevel=1},
 		},
 		damage_groups = {core_structure=.75, fleshy=8},
 	},
@@ -119,8 +114,7 @@ minetest.register_tool("lottserver:glamdring", {
 		full_punch_interval = 2,
 		max_drop_level=1,
 		groupcaps={
-			core_structure={times={[1]=0.30, [2]=0.40, [3]=0.40}, uses=5, maxlevel=1},
-               snappy={times={[1]=0.70, [2]=0.80, [3]=0.25}, uses=80, maxlevel=3},
+			core_structure={times={[1]=0.30, [2]=0.40, [3]=0.40}, uses=0, maxlevel=1},
 		},
 		damage_groups = {core_structure=.75, fleshy=8},
 	},
@@ -134,8 +128,7 @@ minetest.register_tool("lottserver:greathammer", {
 		full_punch_interval = 2,
 		max_drop_level=1,
 		groupcaps={
-			core_structure={times={[1]=10.30, [2]=20.40, [3]=30.40}, uses=5, maxlevel=1},
-               snappy={times={[1]=0.70, [2]=0.80, [3]=0.25}, uses=80, maxlevel=3},
+			core_structure={times={[1]=10.30, [2]=20.40, [3]=30.40}, uses=0, maxlevel=1},
 		},
 		damage_groups = {core_structure=.75, fleshy=8},
 	},
