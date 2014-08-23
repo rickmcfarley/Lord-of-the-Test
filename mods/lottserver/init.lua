@@ -41,24 +41,26 @@ minetest.register_tool("lottserver:durin_axe", {
 	inventory_image = "lottserver_durinaxe.png",
 	range = 2,
 	tool_capabilities = {
-		full_punch_interval = 2,
+		full_punch_interval = 1.0,
 		max_drop_level=1,
 		groupcaps={
 			core_structure={times={[1]=10.30, [2]=20.40, [3]=30.40}, uses=0, maxlevel=1},
+               snappy={times={[1]=0.70, [2]=0.80, [3]=0.25}, uses=0, maxlevel=3},
 		},
 		damage_groups = {core_structure=.75, fleshy=8},
 	},
 })
 
-minetest.register_tool("lottserver:morgul_blade", {
-	description = "Morgul Blade",
-	inventory_image = "lottserver_morgulblade.png",
+minetest.register_tool("lottserver:grond", {
+	description = "Hammer of the Underworld",
+	inventory_image = "lottserver_grond.png",
 	range = 2,
 	tool_capabilities = {
-		full_punch_interval = 2,
+		full_punch_interval = 1.0,
 		max_drop_level=1,
 		groupcaps={
 			core_structure={times={[1]=10.30, [2]=20.40, [3]=30.40}, uses=0, maxlevel=1},
+               snappy={times={[1]=0.70, [2]=0.80, [3]=0.25}, uses=0, maxlevel=3},
 		},
 		damage_groups = {core_structure=.75, fleshy=8},
 	},
@@ -69,10 +71,11 @@ minetest.register_tool("lottserver:herugrim", {
 	inventory_image = "lottserver_herugrim.png",
 	range = 2,
 	tool_capabilities = {
-		full_punch_interval = 2,
+		full_punch_interval = 1.0,
 		max_drop_level=1,
 		groupcaps={
 			core_structure={times={[1]=10.30, [2]=20.40, [3]=30.40}, uses=0, maxlevel=1},
+               snappy={times={[1]=0.70, [2]=0.80, [3]=0.25}, uses=0, maxlevel=3},
 		},
 		damage_groups = {core_structure=.75, fleshy=8},
 	},
@@ -83,10 +86,11 @@ minetest.register_tool("lottserver:anduril", {
 	inventory_image = "lottserver_anduril.png",
 	range = 2,
 	tool_capabilities = {
-		full_punch_interval = 2,
+		full_punch_interval = 1.0,
 		max_drop_level=1,
 		groupcaps={
 			core_structure={times={[1]=10.30, [2]=20.40, [3]=30.40}, uses=0, maxlevel=1},
+               snappy={times={[1]=0.70, [2]=0.80, [3]=0.25}, uses=0, maxlevel=3},
 		},
 		damage_groups = {core_structure=.75, fleshy=8},
 	},
@@ -97,10 +101,11 @@ minetest.register_tool("lottserver:aeglos", {
 	inventory_image = "lottserver_aeglos.png",
 	range = 2,
 	tool_capabilities = {
-		full_punch_interval = 2,
+		full_punch_interval = 1.0,
 		max_drop_level=1,
 		groupcaps={
 			core_structure={times={[1]=10.30, [2]=20.40, [3]=30.40}, uses=0, maxlevel=1},
+               snappy={times={[1]=0.70, [2]=0.80, [3]=0.25}, uses=0, maxlevel=3},
 		},
 		damage_groups = {core_structure=.75, fleshy=8},
 	},
@@ -111,10 +116,11 @@ minetest.register_tool("lottserver:glamdring", {
 	inventory_image = "lottserver_glamdring.png",
 	range = 2,
 	tool_capabilities = {
-		full_punch_interval = 2,
+		full_punch_interval = 1.0,
 		max_drop_level=1,
 		groupcaps={
 			core_structure={times={[1]=0.30, [2]=0.40, [3]=0.40}, uses=0, maxlevel=1},
+               snappy={times={[1]=0.70, [2]=0.80, [3]=0.25}, uses=0, maxlevel=3},
 		},
 		damage_groups = {core_structure=.75, fleshy=8},
 	},
@@ -125,10 +131,11 @@ minetest.register_tool("lottserver:greathammer", {
 	inventory_image = "lottserver_great_hammer.png",
 	range = 1,
 	tool_capabilities = {
-		full_punch_interval = 2,
+		full_punch_interval = 1.0,
 		max_drop_level=1,
 		groupcaps={
 			core_structure={times={[1]=10.30, [2]=20.40, [3]=30.40}, uses=0, maxlevel=1},
+               snappy={times={[1]=0.70, [2]=0.80, [3]=0.25}, uses=0, maxlevel=3},
 		},
 		damage_groups = {core_structure=.75, fleshy=8},
 	},

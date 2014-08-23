@@ -1,0 +1,6 @@
+Latest News:
+1. More Server Misc Stuff Added
+2. New ChatBox Added
+3. Mail Feature Added
+4. Wiki Added
+5. Added Creative Mode to players with "creative"

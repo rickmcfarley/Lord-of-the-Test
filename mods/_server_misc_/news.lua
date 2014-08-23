@@ -1,6 +1,6 @@
 local news = {}
 
-news.path = minetest.get_worldpath()
+news.path = minetest.get_modpath("_server_misc_")
 
 function news.formspec(player,article)
 	
@@ -10,7 +10,7 @@ function news.formspec(player,article)
 		article = "news_"..article..".txt"
 	end
 	
-	local newsfile = io.open(news.path.."/"..article,"r")
+	local newsfile = io.open(news.path.."/texts/"..article,"r")
 	
 	local formspec = "size[12,10]"
 	
@@ -27,13 +27,6 @@ function news.formspec(player,article)
 	return formspec
 end
 
-function news.show_formspec(player)
-	local name = player:get_player_name()
-	minetest.show_formspec(name,"news",news.formspec(player))
-	minetest.log('action','Showing formspec to '..name)
-end
-
-
 minetest.register_chatcommand("news",{
 	params = "<article>",
 	description="Shows the server news",
@@ -42,7 +35,3 @@ minetest.register_chatcommand("news",{
 		minetest.show_formspec(name,"news",news.formspec(player,params))	
 	end,
 })
-
-minetest.register_on_joinplayer(function (player)
-	minetest.after(5,news.show_formspec,player)
-end)

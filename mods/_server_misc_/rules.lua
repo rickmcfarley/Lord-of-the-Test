@@ -1,6 +1,6 @@
 local rules = {}
 
-rules.path = minetest.get_worldpath()
+rules.path = minetest.get_modpath("_server_misc_")
 
 function rules.formspec(player,article)
 	
@@ -10,7 +10,7 @@ function rules.formspec(player,article)
 		article = "rules_"..article..".txt"
 	end
 	
-	local rulesfile = io.open(rules.path.."/"..article,"r")
+	local rulesfile = io.open(rules.path.."/texts/"..article,"r")
 	
 	local formspec = "size[12,10]"
 	
