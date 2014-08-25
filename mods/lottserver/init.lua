@@ -149,3 +149,52 @@ minetest.register_craft({
 		{"", "default:diamond", ""}
 	}
 })
+
+-- Kingdom privs priv!
+minetest.register_privilege("leader", {
+	description = "Leader of a Kingdom!",
+	give_to_singleplayer = true,
+})
+
+minetest.register_chatcommand("induct", {
+	params = "<name> <privilege>",
+	description = "Induct a layer into a kingdom",
+	func = function(name, param)
+		if not minetest.check_player_privs(name, {leader=true}) then
+			return false, "Youdon not lead a Kingdom! Only leaders may induct people into Kingdoms."
+		end
+		local grantname, grantprivstr = string.match(param, "([^ ]+) (.+)")
+		if not grantname or not grantprivstr then
+			return false, "Invalid parameters (see /help grant)"
+		elseif not minetest.auth_table[grantname] then
+			return false, "Player " .. grantname .. " does not exist."
+		end
+		local grantprivs = minetest.string_to_privs(grantprivstr)
+		local privs = minetest.get_player_privs(grantname)
+		local privs_unknown = ""
+		for priv, _ in pairs(grantprivs) do
+			if priv ~= "elven" and priv ~= "dwarven" and priv ~= "rohirrim" and priv ~= "gondorian" and priv ~= "forsaken" and priv ~= "mordor" and
+					not minetest.check_player_privs(name, {server=true}) then
+				return false, "Your privileges are insufficient."
+			end
+			if not minetest.registered_privileges[priv] then
+				privs_unknown = privs_unknown .. "Unknown privilege: " .. priv .. "\n"
+			end
+			privs[priv] = true
+		end
+		if privs_unknown ~= "" then
+			return false, privs_unknown
+		end
+		minetest.set_player_privs(grantname, privs)
+		minetest.log("action", name..' inducted '..grantname..' into the '..minetest.privs_to_string(grantprivs, ', ')..' kingdom')
+		if grantname ~= name then
+			minetest.chat_send_player(grantname, name
+					.. " inducted you into the "
+					.. minetest.privs_to_string(grantprivs, ' '))
+					.. " kingdom!"
+		end
+		return true, "Privileges of " .. grantname .. ": "
+			.. minetest.privs_to_string(
+				minetest.get_player_privs(grantname), ' ')
+	end,
+})
