@@ -163,25 +163,25 @@ minetest.register_on_chat_message(function(name, message)
 
     
     
-    if minetest.check_player_privs(name, {["op"]=true, ["dwarven"]= true,}) then
+    if minetest.check_player_privs(name, {["leader"]=true, ["dwarven"]= true,}) then
         name = OPD_PREFIX .. name
     end
-    if minetest.check_player_privs(name, {["op"]=true, ["elven"]= true,}) then
+    if minetest.check_player_privs(name, {["leader"]=true, ["elven"]= true,}) then
         name = OPE_PREFIX .. name
     end
-    if minetest.check_player_privs(name, {["op"]=true, ["rohirrim"]= true,}) then
+    if minetest.check_player_privs(name, {["leader"]=true, ["rohirrim"]= true,}) then
         name = OPR_PREFIX .. name
     end
-    if minetest.check_player_privs(name, {["op"]=true, ["gondorian"]= true,}) then
+    if minetest.check_player_privs(name, {["leader"]=true, ["gondorian"]= true,}) then
         name = OPG_PREFIX .. name
     end
-    if minetest.check_player_privs(name, {["op"]=true, ["forsaken"]= true,}) then
+    if minetest.check_player_privs(name, {["leader"]=true, ["forsaken"]= true,}) then
         name = OPF_PREFIX .. name
     end
-    if minetest.check_player_privs(name, {["op"]=true, ["forsaken"]= true,}) then
+    if minetest.check_player_privs(name, {["leader"]=true, ["forsaken"]= true,}) then
         name = OPF_PREFIX .. name
     end
-    if minetest.check_player_privs(name, {["op"]=true, ["mordor"]= true,}) then
+    if minetest.check_player_privs(name, {["leader"]=true, ["mordor"]= true,}) then
         name = OPM_PREFIX .. name
     end
     
