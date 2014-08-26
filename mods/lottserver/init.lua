@@ -153,7 +153,7 @@ minetest.register_craft({
 -- Kingdom privs priv!
 minetest.register_privilege("leader", {
 	description = "Leader of a Kingdom!",
-	give_to_singleplayer = true,
+	give_to_singleplayer = false,
 })
 
 minetest.register_chatcommand("induct", {
@@ -189,9 +189,7 @@ minetest.register_chatcommand("induct", {
 		minetest.log("action", name..' inducted '..grantname..' into the '..minetest.privs_to_string(grantprivs, ', ')..' kingdom')
 		if grantname ~= name then
 			minetest.chat_send_player(grantname, name
-					.. " inducted you into the "
-					.. minetest.privs_to_string(grantprivs, ' '))
-					.. " kingdom!"
+					.. " inducted you into the " .. minetest.privs_to_string(grantprivs, ' ') .. " kingdom")
 		end
 		return true, "Privileges of " .. grantname .. ": "
 			.. minetest.privs_to_string(
