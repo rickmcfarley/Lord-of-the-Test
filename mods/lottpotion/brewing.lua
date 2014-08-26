@@ -189,7 +189,7 @@ minetest.register_node("lottpotion:brewer", {
                                         {f=0.75,h1=-0.42,h2=-0.37,b=1}}, 0 ),
     },
 	paramtype = "light",
-	groups = {cracky=2},
+	groups = {choppy=2,oddly_breakable_by_hand=2},
 	sounds = default.node_sound_stone_defaults(),
 	selection_box = {
 		type = "fixed",
