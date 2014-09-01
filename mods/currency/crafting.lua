@@ -37,3 +37,12 @@ minetest.register_craft({
 	output = "currency:minegeld 5",
 	recipe = {"currency:minegeld_5"},
 })
+
+minetest.register_craft({
+	output = "currency:minegeld_5",
+	recipe = {
+		{"", "default:paper", ""},
+		{"default:paper", "default:gold", "default:paper"},
+		{"", "default:paper", ""},
+	}
+})
