@@ -330,7 +330,6 @@ minetest.register_node("bones:skeleton", {
 minetest.register_node("bones:skeleton_body", {
 	description = "Skeleton",
      drawtype = "nodebox",
-     stack_max = 1,
 	tiles = {"bones_skeleton_top.png"},
      inventory_image = "bones_skeleton.png",
     wield_image     = "bones_skeleton.png",
