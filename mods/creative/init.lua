@@ -7,6 +7,22 @@ minetest.register_privilege("creative", {
 creative_inventory = {}
 creative_inventory.creative_inventory_size = 0
 
+local trash = minetest.create_detached_inventory("creative_trash", {
+	-- Allow the stack to be placed and remove it in on_put()
+	-- This allows the creative inventory to restore the stack
+	allow_put = function(inv, listname, index, stack, player)
+		if minetest.check_player_privs(player:get_player_name(),{creative=true}) then
+			return stack:get_count()
+		else
+			return 0
+		end
+	end,
+	on_put = function(inv, listname, index, stack, player)
+		inv:set_stack(listname, index, "")
+	end,
+})
+trash:set_size("main", 1)
+
 -- Create detached creative inventory after loading all mods
 minetest.after(0, function()
 	local inv = minetest.create_detached_inventory("creative", {
@@ -57,20 +73,25 @@ minetest.after(0, function()
  	end
  	creative_inventory.creative_inventory_size = #creative_list
  	--print("creative inventory size: "..dump(creative_inventory.creative_inventory_size))
- end)
- 
-  
- creative_inventory.set_creative_formspec = function(player, start_i, pagenum)
+end)
+
+dofile(minetest.get_modpath("lottarmor").."/armor.lua")
+
+creative_inventory.set_creative_formspec = function(player, start_i, pagenum)
 	pagenum = math.floor(pagenum)
-	local pagemax = math.floor((creative_inventory.creative_inventory_size-1) / (6*4) + 1)
-	player:set_inventory_formspec("size[10,9.5]"..
+	local pagemax = math.floor((creative_inventory.creative_inventory_size-1) / (10*6) + 1)
+	player:set_inventory_formspec("size[12,9.5]"..
 			"list[current_player;main;0,0;8,2;]"..
+               "list[current_player;main;10,0;2,8;16]"..
 			"button[8,0;2,1;creative_switchpalette;Palette]"..
 			"button[8,1;2,1;creative_clear;Clear]"..
+               "label[4,2;Trash:]"..
+               "list[detached:creative_trash;main;5,2;1,1;]"..
 			"button[0,2.3;1,1;creative_prev;<]"..
 			"button[1,2.3;1,1;creative_next;>]"..
-               "button[8,2;2,1;main;Back]"..
-			"label[2,2.4;"..tostring(pagenum).."/"..tostring(pagemax).."]"..
+               "button[10,8.5;2,1;main;Main]"..
+               "background[5,5;1,1;gui_formbg.png;true]"..
+               "label[2,2.4;"..tostring(pagenum).."/"..tostring(pagemax).."]"..
 			"list[detached:creative;main;0,3.3;10,6;"..tostring(start_i).."]")
 end
 
