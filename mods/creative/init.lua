@@ -11,7 +11,7 @@ local trash = minetest.create_detached_inventory("creative_trash", {
 	-- Allow the stack to be placed and remove it in on_put()
 	-- This allows the creative inventory to restore the stack
 	allow_put = function(inv, listname, index, stack, player)
-		if minetest.check_player_privs(player:get_player_name(),{creative=true}) then
+		if minetest.setting_getbool("creative_mode") then
 			return stack:get_count()
 		else
 			return 0
@@ -27,7 +27,7 @@ trash:set_size("main", 1)
 minetest.after(0, function()
 	local inv = minetest.create_detached_inventory("creative", {
  	allow_move = function(inv, from_list, from_index, to_list, to_index, count, player)
-			if minetest.check_player_privs(player:get_player_name(),{creative=true}) then
+			if minetest.setting_getbool("creative_mode") then
  				return count
  			else
  				return 0
@@ -37,7 +37,7 @@ minetest.after(0, function()
  			return 0
  		end,
  		allow_take = function(inv, listname, index, stack, player)
- 			if minetest.check_player_privs(player:get_player_name(),{creative=true}) then
+ 			if minetest.setting_getbool("creative_mode") then
  				return -1
  			else
  				return 0
@@ -67,7 +67,7 @@ minetest.after(0, function()
  	for _,itemstring in ipairs(creative_list) do
  		local stack = ItemStack(itemstring)
  		-- Make a stack of the right number of items
- 		stack2 = ItemStack(stack:get_name().." "..(999))
+ 		stack2 = ItemStack(stack:get_name().." "..(1))
  		inv:add_item("main", stack2)
  
  	end
@@ -97,13 +97,13 @@ end
 
 minetest.register_on_joinplayer(function(player)
 	-- If in creative mode, modify player's inventory forms
-	if minetest.check_player_privs(player:get_player_name(),{creative=true}) then
+	if minetest.setting_getbool("creative_mode") then
 	creative_inventory.set_creative_formspec(player, 0, 1)
 end
 end)
 
 minetest.register_on_player_receive_fields(function(player, formname, fields)
-	if not minetest.check_player_privs(player:get_player_name(),{creative=true}) then
+	if not minetest.setting_getbool("creative_mode") then
 		return
 	end
 	-- Figure out current page from formspec
@@ -159,3 +159,45 @@ minetest.register_on_player_receive_fields(function(player, formname, fields)
  
 	creative_inventory.set_creative_formspec(player, start_i, start_i / (6*10) + 1)
 end)
+
+if minetest.setting_getbool("creative_mode") then
+	local digtime = 0.5
+	minetest.register_item(":", {
+		type = "none",
+		wield_image = "wieldhand.png",
+		wield_scale = {x=1,y=1,z=2.5},
+		range = 10,
+		tool_capabilities = {
+			full_punch_interval = 0.5,
+			max_drop_level = 3,
+			groupcaps = {
+				crumbly = {times={[1]=digtime, [2]=digtime, [3]=digtime}, uses=0, maxlevel=3},
+				cracky = {times={[1]=digtime, [2]=digtime, [3]=digtime}, uses=0, maxlevel=3},
+				snappy = {times={[1]=digtime, [2]=digtime, [3]=digtime}, uses=0, maxlevel=3},
+				choppy = {times={[1]=digtime, [2]=digtime, [3]=digtime}, uses=0, maxlevel=3},
+				oddly_breakable_by_hand = {times={[1]=digtime, [2]=digtime, [3]=digtime}, uses=0, maxlevel=3},
+			},
+			damage_groups = {fleshy = 10},
+		}
+	})
+	
+	minetest.register_on_placenode(function(pos, newnode, placer, oldnode, itemstack)
+		return true
+	end)
+	
+	function minetest.handle_node_drops(pos, drops, digger)
+		if not digger or not digger:is_player() then
+			return
+		end
+		local inv = digger:get_inventory()
+		if inv then
+			for _,item in ipairs(drops) do
+				item = ItemStack(item):get_name()
+				if not inv:contains_item("main", item) then
+					inv:add_item("main", item)
+				end
+			end
+		end
+	end
+	
+end
