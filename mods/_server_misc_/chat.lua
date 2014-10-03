@@ -29,8 +29,8 @@
 -- config zone {{{
 formats = {
 -- ["MATCH"] = {"FORMAT"                  RANGE  COLOR     PRIV}, --
-   ["!(.+)"] = {"%s (Shouts): %s", 200, 0xFF0000, nil },
-   ["?(.+)"] = {"%s (Whispers): %s", 3, 0x666666, nil },
+   ["<(.+)"] = {"%s (Shouts): %s", 200, 0xFF0000, nil },
+   [">(.+)"] = {"%s (Whispers): %s", 3, 0x666666, nil },
    ["*(.+)"] = {"* %s %s", 35, 0xFFFF00, nil },
    ["#(.+)"] = {"%s (SERVER_NEWS): %s", 62000, 0x9966AA, "op"},
    ["@(.+)"] = {"%s (Global): %s", 62000, 0x20EEDD, nil },
