@@ -130,6 +130,7 @@ minetest.register_tool("lottserver:greathammer", {
 	description = "Great Hammer",
 	inventory_image = "lottserver_great_hammer.png",
 	range = 1,
+     groups = {forbidden=1},
 	tool_capabilities = {
 		full_punch_interval = 1.0,
 		max_drop_level=1,
@@ -150,18 +151,12 @@ minetest.register_craft({
 	}
 })
 
--- Kingdom privs priv!
-minetest.register_privilege("leader", {
-	description = "Leader of a Kingdom!",
-	give_to_singleplayer = false,
-})
-
 minetest.register_chatcommand("induct", {
 	params = "<name> <privilege>",
 	description = "Induct a layer into a kingdom",
 	func = function(name, param)
-		if not minetest.check_player_privs(name, {leader=true}) then
-			return false, "Youdon not lead a Kingdom! Only leaders may induct people into Kingdoms."
+		if not minetest.check_player_privs(name, {leader=true}) or not minetest.check_player_privs(name, {high=true}) then
+			return false, "You are not of a high position in a Kingdom! Only high position people may induct people into Kingdoms."
 		end
 		local grantname, grantprivstr = string.match(param, "([^ ]+) (.+)")
 		if not grantname or not grantprivstr then

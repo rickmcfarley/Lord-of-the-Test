@@ -30,7 +30,7 @@ wikilib.name_to_filename = name_to_filename
 
 local function get_page_path(name, player) --> path, is_file, allow_save
 
-	local allow_save = minetest.check_player_privs(player, {wiki=true})
+	local allow_save = minetest.check_player_privs(player, {access=true})
 
 	if name:sub(1, 1) == "." then
 		local text = wikilib.internal_pages[name] or wikilib.internal_pages[".NotFound_Internal"]

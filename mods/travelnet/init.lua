@@ -53,8 +53,7 @@
 --]]
 
 
-minetest.register_privilege("travelnet_attach", { description = "allows to attach travelnet boxes to travelnets of other players", give_to_singleplayer = false});
-minetest.register_privilege("travelnet_remove", { description = "allows to dig travelnet boxes which belog to nets of other players", give_to_singleplayer = false});
+minetest.register_privilege("travelnet", { description = "allows to attach travelnet boxes to travelnets of other players & remove travelnets of other players", give_to_singleplayer = false});
 
 travelnet = {};
 
@@ -317,7 +316,7 @@ travelnet.add_target = function( palantiri_name, network_name, pos, player_name,
       minetest.chat_send_player(player_name, "There is no network named "..tostring( network_name ).." owned by "..tostring( owner_name )..". Aborting.");
       return;
 
-   elseif( not( minetest.check_player_privs(player_name, {travelnet_attach=true}))
+   elseif( not( minetest.check_player_privs(player_name, {travelnet=true}))
        and not( travelnet.allow_attach( player_name, owner_name, network_name ))) then
 
         minetest.chat_send_player(player_name, "You do not have the travelnet_attach priv which is required to attach your box to the network of someone else. Aborting.");
@@ -598,7 +597,7 @@ travelnet.can_dig = function( pos, player, description )
    local name          = player:get_player_name();
 
    -- players with that priv can dig regardless of owner
-   if( minetest.check_player_privs(name, {travelnet_remove=true})
+   if( minetest.check_player_privs(name, {travelnet=true})
        or travelnet.allow_dig( player_name, owner_name, network_name )) then
       return true;
    end

@@ -392,8 +392,7 @@ minetest.register_node("doors:trapdoor_open", {
 minetest.register_craft({
 	output = 'doors:trapdoor',
 	recipe = {
-		{'group:wood', 'group:wood', 'group:wood'},
-		{'group:wood', 'group:wood', 'group:wood'},
-		{'', '', ''},
+		{'group:wood', 'group:wood'},
+		{'group:wood', 'group:wood'},
 	}
 })

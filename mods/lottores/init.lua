@@ -386,7 +386,7 @@ minetest.register_node("lottores:tilkal", {
 	description = "Tilkal",
 	tiles = {"lottores_tilkal.png"},
 	sounds = default.node_sound_defaults(),
-	groups = {forbidden=1},
+	groups = {core_structure=1,forbidden=1},
 })
 
 minetest.register_node("lottores:limestone", {
@@ -1090,7 +1090,7 @@ minetest.register_tool("lottores:mithrilshovel", {
 -- Stairs & Slabs
 
 stairs.register_stair_and_slab("tilkal", "lottores:tilkal",
-        {forbidden=1},
+        {core_structure=1,forbidden=1},
 		{"lottores_tilkal.png"},
 		"Tilkal Stair",
 		"Tilkal Slab",

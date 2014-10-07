@@ -1,10 +1,9 @@
 Welcome to Lord of the Test Server hosted by OldCoder.
 "Not all those who wander are lost", get out there and explore the world.
-Please read this before starting on the server "/rules"
-For latest news, "/news"
-For New Players, give the wiki a visit. Use "/wiki"
+Please read the rules before starting by pressing the "rules" button below
+For all new players, give the "welcome" button a visit.
 
 If you encountered any problems, please contact one of the Head Administrators / Administrators / Moderators as seen in the list below:
 Head Administrators (Developers of LOTT): fishyWET, Amaz
-Administrators: coagen
-Moderators: AMMOnym, catninja, krazylego
+Administrators: - None -
+Moderators: AMMOnym, catninja, krazylego, LittleJoe

@@ -24,7 +24,7 @@ earn_income = function(player)
     if players_income[name] > 0 then
         count = players_income[name]
         local inv = player:get_inventory()
-        inv:add_item("main", {name="currency:minegeld", count=count})
+        inv:add_item("main", {name="currency:minegeld_10", count=count})
         players_income[name] = 0
     end
 end

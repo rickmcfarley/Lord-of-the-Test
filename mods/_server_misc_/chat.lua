@@ -29,31 +29,51 @@
 -- config zone {{{
 formats = {
 -- ["MATCH"] = {"FORMAT"                  RANGE  COLOR     PRIV}, --
-   ["<(.+)"] = {"%s (Shouts): %s", 200, 0xFF0000, nil },
-   [">(.+)"] = {"%s (Whispers): %s", 3, 0x666666, nil },
-   ["*(.+)"] = {"* %s %s", 35, 0xFFFF00, nil },
-   ["#(.+)"] = {"%s (SERVER_NEWS): %s", 62000, 0x9966AA, "op"},
-   ["@(.+)"] = {"%s (Global): %s", 62000, 0x20EEDD, nil },
+   ["%<(.+)%>"] = {"%s (Shouts): %s",     200,    0xFF0000, "shout" },
+   ["%{(.+)%}"] = {"%s (Whispers): %s",     200,    0x666666, "shout" },
+   [">(.+)"] = {"(Local)* %s %s", 35, 0xFFFF00, "shout" },
+   ["<(.+)"] = {"(Global)* %s %s", 62000, 0xFFFF00, "shout" },
+   ["#(.+)"] = {"%s (SERVER_NEWS): %s", 62000, 0x9966AA, "privs"},
+   ["@(.+)"] = {"%s (Local): %s", 35, 0xFFFFFF, "shout" },
 }
-DEFAULT_FORMAT     = "%s (Local): %s" 
-DEFAULT_RANGE      = 35
-DEFAULT_COLOR      = 0xFFFFFF
-DICE_COLOR         = 0x0099FF
-GMSPY_COLOR        = 0x666666
-GM_PREFIX          = "[Admin] "
-OP_PREFIX            = "[Moderator] "
-D_PREFIX            = "[Dwarven] "
-E_PREFIX            = "[Elven] "
-R_PREFIX            = "[Rohirrim] "
-G_PREFIX            = "[Gondorian] "
-F_PREFIX            = "[Forsaken] "
-M_PREFIX            = "[Mordor] "
-OPD_PREFIX            = "[King of Durin's Folk] "
-OPE_PREFIX            = "[High King of the Elves] "
-OPR_PREFIX            = "[King of the Mark] "
-OPG_PREFIX            = "[King of Gondor] "
-OPF_PREFIX            = "[Chief of the Forsaken] "
-OPM_PREFIX            = "[Dark Queen of Mordor] "
+DEFAULT_FORMAT = "%s (Global): %s" 
+DEFAULT_RANGE = 62000
+DEFAULT_COLOR = 0x20EEDD
+DICE_COLOR = 0x0099FF
+GMSPY_COLOR = 0x666666
+GM_PREFIX = "[Eru, the Creator] "
+D_PREFIX = "[Dwarven] "
+E_PREFIX = "[Elven] "
+R_PREFIX = "[Rohirrim] "
+G_PREFIX = "[Gondorian] "
+F_PREFIX = "[Forsaken] "
+M_PREFIX = "[Mordor] "
+OPD_PREFIX = "[King of Durin's Folk] "
+OPE_PREFIX = "[High King of the Elves] "
+OPR_PREFIX = "[King of the Mark] "
+OPG_PREFIX = "[King of Gondor] "
+OPF_PREFIX = "[Chief of the Forsaken] "
+OPM_PREFIX = "[Dark Queen of Mordor] "
+
+OPDD_PREFIX = "[Dwarven High General] "
+OPEE_PREFIX = "[Elven High Lord] "
+OPRR_PREFIX = "[Rohirrim Head Officer] "
+OPGG_PREFIX = "[Gondorian Steward] "
+OPFF_PREFIX = "[Forsaken Elder] "
+OPMM_PREFIX = "[Mordor Chieftain] "
+
+OPDDD_PREFIX = "[Dwarven General] "
+OPEEE_PREFIX = "[Elven Lord] "
+OPRRR_PREFIX = "[Rohirrim Officer] "
+OPGGG_PREFIX = "[Gondorian General] "
+OPMMM_PREFIX = "[Mordor Captain] "
+
+OPDDDD_PREFIX = "[Dwarven Elder] "
+OPEEEE_PREFIX = "[Elven Elder] "
+OPRRRR_PREFIX = "[Rohirrim Elder] "
+OPGGGG_PREFIX = "[Gondorian Elder] "
+OPMMMM_PREFIX = "[Mordor Elder] "
+
 MESSAGES_ON_SCREEN = 10
 MAX_LENGTH         = 100
 LEFT_INDENT        = 0.01
@@ -116,13 +136,28 @@ minetest.register_on_joinplayer(function(player)
         end, player)
 end)
 
+minetest.register_privilege("leader", {
+	description = "Leader of a Kingdom!",
+	give_to_singleplayer = false,
+})
+
 minetest.register_privilege("gm", {
 	description = "Gives access to reading all messages in the chat",
 	give_to_singleplayer= false,
 })
 
-minetest.register_privilege("op", {
-	description = "Gives access to typing server news",
+minetest.register_privilege("high", {
+	description = "High Position",
+	give_to_singleplayer= false,
+})
+
+minetest.register_privilege("mid", {
+	description = "Middle Position",
+	give_to_singleplayer= false,
+})
+
+minetest.register_privilege("low", {
+	description = "Low Position",
 	give_to_singleplayer= false,
 })
 
@@ -178,20 +213,67 @@ minetest.register_on_chat_message(function(name, message)
     if minetest.check_player_privs(name, {["leader"]=true, ["forsaken"]= true,}) then
         name = OPF_PREFIX .. name
     end
-    if minetest.check_player_privs(name, {["leader"]=true, ["forsaken"]= true,}) then
-        name = OPF_PREFIX .. name
-    end
     if minetest.check_player_privs(name, {["leader"]=true, ["mordor"]= true,}) then
         name = OPM_PREFIX .. name
     end
     
-    -- GM's prefix
-    if minetest.check_player_privs(name, {["gm"]=true,}) then
-        name = GM_PREFIX .. name
+    
+    if minetest.check_player_privs(name, {["high"]=true, ["dwarven"]= true,}) then
+        name = OPDD_PREFIX .. name
     end
-    -- OP's prefix
-    if minetest.check_player_privs(name, {["op"]=true,}) then
-        name = OP_PREFIX .. name
+    if minetest.check_player_privs(name, {["high"]=true, ["elven"]= true,}) then
+        name = OPEE_PREFIX .. name
+    end
+    if minetest.check_player_privs(name, {["high"]=true, ["rohirrim"]= true,}) then
+        name = OPRR_PREFIX .. name
+    end
+    if minetest.check_player_privs(name, {["high"]=true, ["gondorian"]= true,}) then
+        name = OPGG_PREFIX .. name
+    end
+    if minetest.check_player_privs(name, {["high"]=true, ["forsaken"]= true,}) then
+        name = OPFF_PREFIX .. name
+    end
+    if minetest.check_player_privs(name, {["high"]=true, ["mordor"]= true,}) then
+        name = OPMM_PREFIX .. name
+    end
+    
+    
+    if minetest.check_player_privs(name, {["middle"]=true, ["dwarven"]= true,}) then
+        name = OPDDD_PREFIX .. name
+    end
+    if minetest.check_player_privs(name, {["middle"]=true, ["elven"]= true,}) then
+        name = OPEEE_PREFIX .. name
+    end
+    if minetest.check_player_privs(name, {["middle"]=true, ["rohirrim"]= true,}) then
+        name = OPRRR_PREFIX .. name
+    end
+    if minetest.check_player_privs(name, {["middle"]=true, ["gondorian"]= true,}) then
+        name = OPGGG_PREFIX .. name
+    end
+    if minetest.check_player_privs(name, {["middle"]=true, ["mordor"]= true,}) then
+        name = OPMMM_PREFIX .. name
+    end
+    
+    
+    if minetest.check_player_privs(name, {["low"]=true, ["dwarven"]= true,}) then
+        name = OPDDDD_PREFIX .. name
+    end
+    if minetest.check_player_privs(name, {["low"]=true, ["elven"]= true,}) then
+        name = OPEEEE_PREFIX .. name
+    end
+    if minetest.check_player_privs(name, {["low"]=true, ["rohirrim"]= true,}) then
+        name = OPRRRR_PREFIX .. name
+    end
+    if minetest.check_player_privs(name, {["low"]=true, ["gondorian"]= true,}) then
+        name = OPGGGG_PREFIX .. name
+    end
+    if minetest.check_player_privs(name, {["low"]=true, ["mordor"]= true,}) then
+        name = OPMMMM_PREFIX .. name
+    end
+    
+    
+    if minetest.check_player_privs(name, {["gm"]=true, ["dwarven"]= true, ["elven"]= true, ["mordor"]= true, ["rohirrim"]= true, ["gondorian"]= true, ["forsaken"]=true,}) then
+        name = GM_PREFIX .. name
     end
     if minetest.check_player_privs(name, {["dwarven"]=true,}) then
         name = D_PREFIX .. name

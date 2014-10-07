@@ -2,14 +2,8 @@
 -- Server Misc Mod --
 ---------------------
 
---Welcome Page
+-- Welcome Page
 dofile(minetest.get_modpath("_server_misc_").."/welcome.lua")
-
---News
-dofile(minetest.get_modpath("_server_misc_").."/news.lua")
-
---Rules
-dofile(minetest.get_modpath("_server_misc_").."/rules.lua")
 
 -- Aliases (Not Needed)
 --dofile(minetest.get_modpath("_server_misc_").."/aliases.lua")

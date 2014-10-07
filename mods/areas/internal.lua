@@ -109,7 +109,7 @@ end
 -- Also checks the size of the area and if the user already
 -- has more than max_areas.
 function areas:canPlayerAddArea(pos1, pos2, name)
-	if minetest.check_player_privs(name, {areas=true}) then
+	if minetest.check_player_privs(name, {access=true}) then
 		return true
 	end
 

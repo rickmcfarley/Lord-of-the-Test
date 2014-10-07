@@ -4,10 +4,6 @@ minetest.register_privilege("creative", {
 	description = "Creative Mode",
 	give_to_singleplayer= false,
 })
-minetest.register_privilege("overpowered", {
-	description = "Overpowered",
-	give_to_singleplayer= false,
-})
 creative_inventory = {}
 creative_inventory.creative_inventory_size = 0
 
@@ -159,3 +155,22 @@ minetest.register_on_player_receive_fields(function(player, formname, fields)
  
 	creative_inventory.set_creative_formspec(player, start_i, start_i / (6*10) + 1)
 end)
+
+local digtime = 0.5
+minetest.register_tool("creative:creative", {
+	description = "Holy Mese Pick",
+	inventory_image = "default_tool_mesepick.png",
+	tool_capabilities = {
+			full_punch_interval = 0.5,
+			max_drop_level = 3,
+			groupcaps = {
+				crumbly = {times={[1]=digtime, [2]=digtime, [3]=digtime}, uses=0, maxlevel=3},
+				cracky = {times={[1]=digtime, [2]=digtime, [3]=digtime}, uses=0, maxlevel=3},
+				snappy = {times={[1]=digtime, [2]=digtime, [3]=digtime}, uses=0, maxlevel=3},
+				choppy = {times={[1]=digtime, [2]=digtime, [3]=digtime}, uses=0, maxlevel=3},
+				oddly_breakable_by_hand = {times={[1]=digtime, [2]=digtime, [3]=digtime}, uses=0, maxlevel=3},
+                    core_structure = {times={[1]=digtime, [2]=digtime, [3]=digtime}, uses=0, maxlevel=3},
+			},
+			damage_groups = {fleshy = 10},
+		}
+})

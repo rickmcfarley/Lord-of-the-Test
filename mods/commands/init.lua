@@ -6,7 +6,31 @@ minetest.register_chatcommand("spawn", {
     func = function(name, param)
             local player = minetest.env:get_player_by_name(name)
             minetest.chat_send_player(name, "Teleported to spawn!")
-            player:setpos({x=59.5, y=6, z=-120.5})
+            player:setpos({x=59.0, y=6, z=-120})
+            return true
+    end,
+})
+
+minetest.register_chatcommand("FOS", {
+    params = "",
+    description = "Teleport to the FOS location.",
+    privs = {shout=true},
+    func = function(name, param)
+            local player = minetest.env:get_player_by_name(name)
+            minetest.chat_send_player(name, "Teleported to Foundations of Stone!")
+            player:setpos({x=0, y=-95, z=0})
+            return true
+    end,
+})
+
+minetest.register_chatcommand("AC", {
+    params = "",
+    description = "Teleport to the Admin's Core.",
+    privs = {access=true},
+    func = function(name, param)
+            local player = minetest.env:get_player_by_name(name)
+            minetest.chat_send_player(name, "Teleported to Admin's Core!")
+            player:setpos({x=0, y=-10000, z=0})
             return true
     end,
 })

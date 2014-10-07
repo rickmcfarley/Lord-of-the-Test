@@ -39,10 +39,13 @@ minetest.register_craft({
 })
 
 minetest.register_craft({
-	output = "currency:minegeld_5",
-	recipe = {
-		{"", "default:paper", ""},
-		{"default:paper", "default:gold", "default:paper"},
-		{"", "default:paper", ""},
-	}
+	type = "cooking",
+	output = "currency:minegeld_10 3",
+	recipe = "default:gold_ingot",
+})
+
+minetest.register_craft({
+	type = "cooking",
+	output = "currency:minegeld_10",
+	recipe = "lottores:silver_ingot",
 })
