@@ -40,7 +40,8 @@ minetest.register_node("memorandum:letter_empty", {
 					"size[10,7]"..
 					"field[1,1;8.5,1;text; Write a Letter;${text}]"..
 					"field[1,3;4.25,1;signed; Sign Letter (optional);${signed}]"..
-					"button_exit[0.75,5;4.25,1;text,signed;Done]"
+					"button_exit[0.75,5;4.25,1;text,signed;Done]"..
+                         "button_exit[0.75,6;4.25,1;exit;Exit]"
 				)
 		meta:set_string("infotext", info..'"')
 	end,
