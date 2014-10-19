@@ -22,3 +22,6 @@ dofile(minetest.get_modpath("_server_misc_").."/chat.lua")
 
 --chatplus
 dofile(minetest.get_modpath("_server_misc_").."/chatplus.lua")
+
+--commands
+dofile(minetest.get_modpath("_server_misc_").."/commands.lua")
