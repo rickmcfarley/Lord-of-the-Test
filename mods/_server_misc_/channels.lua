@@ -2,7 +2,7 @@ channels = {}
 channels.huds = {}
 channels.players = {}
 
-minetest.register_chatcommand("channel", {
+minetest.register_chatcommand("chan", {
 	description = "Manages chat channels",
 	privs = {
 		interact = true, 
