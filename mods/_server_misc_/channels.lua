@@ -11,18 +11,18 @@ minetest.register_chatcommand("channel", {
 	func = function(name, param)
 		if param == "" then
 			minetest.chat_send_player(name, "Online players: /channel online")
-			minetest.chat_send_player(name, "Join/switch:    /channel set <channel>")
-			minetest.chat_send_player(name, "Leave channel:  /channel leave")
+			minetest.chat_send_player(name, "Join/switch:    /channel join <channel>")
+			minetest.chat_send_player(name, "Leave channel:  /channel part")
 			return
 		elseif param == "online" then
 			channels.command_online(name)
 			return
-		elseif param == "leave" then
+		elseif param == "part" then
 			channels.command_leave(name)
 			return
 		end
 		local args = param:split(" ")
-		if args[1] == "set" then
+		if args[1] == "join" then
 			if #args >= 2 then
 				 channels.command_set(name, args[2])
 				 return
