@@ -310,3 +310,27 @@ minetest.register_abm({
 		end
      end,
 })
+
+minetest.register_node("lottserver:marble", {
+	tiles = {"default_grass.png"},
+	groups = {snappy=2,dig_immediate=3,flammable=2, not_in_creative_inventory=1},
+})
+
+minetest.register_abm({
+	nodenames = {"lottserver:marble"},
+	neighbors = {"air"},
+	interval = 2,
+	chance = 1,
+	action = function(pos, node, active_object_count, active_object_count_wider)
+		local x = pos.x
+		local y = pos.y
+		local z = pos.z
+		local down = {x=x,y=y-1,z=z}
+		local here = {x=x,y=y,z=z}
+        if minetest.get_node(down).name == "air" then
+	       minetest.set_node(down, {name="lottserver:marble"})
+	       minetest.remove_node(here)
+	       minetest.set_node(here, {name="lottores:marble"})
+	end
+     end,
+})
