@@ -155,7 +155,7 @@ minetest.register_chatcommand("induct", {
 	params = "<name> <privilege>",
 	description = "Induct a layer into a kingdom",
 	func = function(name, param)
-		if not minetest.check_player_privs(name, {leader=true}) or not minetest.check_player_privs(name, {high=true}) then
+		if not minetest.check_player_privs(name, {leader=true}) or if not minetest.check_player_privs(name, {high=true}) then
 			return false, "You are not of a high position in a Kingdom! Only high position people may induct people into Kingdoms."
 		end
 		local grantname, grantprivstr = string.match(param, "([^ ]+) (.+)")
