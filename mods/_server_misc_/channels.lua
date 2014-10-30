@@ -10,9 +10,9 @@ minetest.register_chatcommand("chan", {
 	},
 	func = function(name, param)
 		if param == "" then
-			minetest.chat_send_player(name, "Online players: /channel status")
-			minetest.chat_send_player(name, "Join/switch:    /channel join <channel>")
-			minetest.chat_send_player(name, "Leave channel:  /channel part")
+			minetest.chat_send_player(name, "Online players: /chan status")
+			minetest.chat_send_player(name, "Join/switch:    /chan join <channel>")
+			minetest.chat_send_player(name, "Leave channel:  /chan part")
 			return
 		elseif param == "status" then
 			channels.command_online(name)
@@ -28,7 +28,7 @@ minetest.register_chatcommand("chan", {
 				 return
 			end
 		end
-		minetest.chat_send_player(name, "Error: Please check again '/channel' for correct usage.")
+		minetest.chat_send_player(name, "Error: Please check again '/chan' for correct usage.")
 	end,
 })
 
@@ -100,10 +100,12 @@ function channels.command_set(name, param)
 		hud_elem_type	= "text",
 		name		= "Channel",
 		number		= 0xFFFFFF,
-		position	= {x = 0.6, y = 0.03},
+		position = {x=0, y=1},
+		offset = {x=5, y=-85},
+		direction = 0,
 		text		= "Channel: "..param,
-		scale		= {x = 200,y = 25},
-		alignment	= {x = 0, y = 0},
+		scale = {x=200, y=60},
+		alignment = {x=1, y=1},
 	})
 	channels.say_chat("", "# "..name.." joined the channel", param)
 end
