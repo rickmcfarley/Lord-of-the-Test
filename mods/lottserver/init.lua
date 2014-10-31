@@ -155,7 +155,7 @@ minetest.register_chatcommand("induct", {
 	params = "<name> <privilege>",
 	description = "Induct a layer into a kingdom",
 	func = function(name, param)
-		if not minetest.check_player_privs(name, {leader=true}) or if not minetest.check_player_privs(name, {high=true}) then
+		if not minetest.check_player_privs(name, {leader=true}) and not minetest.check_player_privs(name, {high=true}) then
 			return false, "You are not of a high position in a Kingdom! Only high position people may induct people into Kingdoms."
 		end
 		local grantname, grantprivstr = string.match(param, "([^ ]+) (.+)")
@@ -168,8 +168,7 @@ minetest.register_chatcommand("induct", {
 		local privs = minetest.get_player_privs(grantname)
 		local privs_unknown = ""
 		for priv, _ in pairs(grantprivs) do
-			if priv ~= "elven" and priv ~= "dwarven" and priv ~= "rohirrim" and priv ~= "gondorian" and priv ~= "forsaken" and priv ~= "mordor" and
-					not minetest.check_player_privs(name, {server=true}) then
+			if priv ~= "elven" and priv ~= "dwarven" and priv ~= "rohirrim" and priv ~= "gondorian" and priv ~= "forsaken" and priv ~= "mordor" then
 				return false, "Your privileges are insufficient."
 			end
 			if not minetest.registered_privileges[priv] then
@@ -185,6 +184,46 @@ minetest.register_chatcommand("induct", {
 		if grantname ~= name then
 			minetest.chat_send_player(grantname, name
 					.. " inducted you into the " .. minetest.privs_to_string(grantprivs, ' ') .. " kingdom")
+		end
+		return true, "Privileges of " .. grantname .. ": "
+			.. minetest.privs_to_string(
+				minetest.get_player_privs(grantname), ' ')
+	end,
+})
+
+minetest.register_chatcommand("promote", {
+	params = "<name> <privilege>",
+	description = "Promote a player's position in a kingdom",
+	func = function(name, param)
+		if not minetest.check_player_privs(name, {leader=true}) and not minetest.check_player_privs(name, {high=true}) then
+			return false, "You are not of a high position in a Kingdom! Only high position people may promote other people"
+		end
+		local grantname, grantprivstr = string.match(param, "([^ ]+) (.+)")
+		if not grantname or not grantprivstr then
+			return false, "Invalid parameters (see /help grant)"
+		elseif not minetest.auth_table[grantname] then
+			return false, "Player " .. grantname .. " does not exist."
+		end
+		local grantprivs = minetest.string_to_privs(grantprivstr)
+		local privs = minetest.get_player_privs(grantname)
+		local privs_unknown = ""
+		for priv, _ in pairs(grantprivs) do
+			if priv ~= "high" and priv ~= "mid" and priv ~= "low" then
+				return false, "Your privileges are insufficient."
+			end
+			if not minetest.registered_privileges[priv] then
+				privs_unknown = privs_unknown .. "Unknown privilege: " .. priv .. "\n"
+			end
+			privs[priv] = true
+		end
+		if privs_unknown ~= "" then
+			return false, privs_unknown
+		end
+		minetest.set_player_privs(grantname, privs)
+		minetest.log("action", name..' promoted '..grantname..' to a '..minetest.privs_to_string(grantprivs, ', ')..' position in your kingdom')
+		if grantname ~= name then
+			minetest.chat_send_player(grantname, name
+					.. " promoted you to a " .. minetest.privs_to_string(grantprivs, ' ') .. " position in your kingdom")
 		end
 		return true, "Privileges of " .. grantname .. ": "
 			.. minetest.privs_to_string(
