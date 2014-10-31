@@ -789,7 +789,7 @@ lottmobs:register_mob("lottmobs:half_troll", {
 lottmobs:register_spawn("lottmobs:half_troll", {"default:snow"}, 15, -1, 8000, 3, 31000)
 lottmobs:register_spawn("lottmobs:half_troll", {"default:snowblock"}, 15, -1, 8000, 3, 31000)
 lottmobs:register_spawn("lottmobs:half_troll", {"lottmapgen:angsnowblock"}, 20, -1, 6000, 5, 31000)
-
+--[[
 lottmobs:register_mob("lottmobs:nazgul", {
 	type = "monster",
 	hp_min = 90,
@@ -952,7 +952,7 @@ lottmobs:register_mob("lottmobs:balrog", {
 	group_attack = true,
 	step = 1,
 })
-lottmobs:register_spawn("lottmobs:balrog", {"default:stone"}, 2, -1, 100000, 10, -10000)
+lottmobs:register_spawn("lottmobs:balrog", {"default:stone"}, 2, -1, 100000, 10, -10000)]]--
 
 lottmobs:register_mob("lottmobs:dead_men", {
 	type = "monster",
