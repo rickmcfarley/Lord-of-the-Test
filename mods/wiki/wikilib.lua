@@ -30,7 +30,7 @@ wikilib.name_to_filename = name_to_filename
 
 local function get_page_path(name, player) --> path, is_file, allow_save
 
-	local allow_save = minetest.check_player_privs(player, {access=true})
+	local allow_save = minetest.check_player_privs(player, {wiki=true})
 
 	if name:sub(1, 1) == "." then
 		local text = wikilib.internal_pages[name] or wikilib.internal_pages[".NotFound_Internal"]
@@ -168,7 +168,6 @@ function wikilib.get_wiki_page_formspec(player, name, w, h)
 
 	return ("size["..w..","..h.."]"
 		.. "field[0,1;11,1;page;Page;"..esc(name).."]"
-		.. "button[11,1;1,0.5;go;Go]"
 		.. "textarea[0,2;12,6;text;"..esc(name)..";"..esc(text).."]"
 		.. buttons
 		.. toolbar
@@ -224,9 +223,6 @@ function wikilib.handle_formspec(player, formname, fields)
 		else
 			wikilib.show_wiki_page(plname, fields.page)
 		end
-		return true
-	elseif fields.go then
-		wikilib.show_wiki_page(plname, fields.page)
 		return true
 	else
 		for k in pairs(fields) do

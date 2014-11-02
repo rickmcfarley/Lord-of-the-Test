@@ -763,7 +763,7 @@ minetest.register_chatcommand("/orient", {
 minetest.register_chatcommand("/fixlight", {
 	params = "",
 	description = "Fix the lighting in the current WorldEdit region",
-	privs = {access=true},
+	privs = {worldedit=true},
 	func = safe_region(function(name, param)
 		local pos1, pos2 = worldedit.pos1[name], worldedit.pos2[name]
 		local count = worldedit.fixlight(pos1, pos2)
@@ -820,7 +820,7 @@ minetest.register_chatcommand("/restore", {
 minetest.register_chatcommand("/save", {
 	params = "<file>",
 	description = "Save the current WorldEdit region to \"(world folder)/schems/<file>.we\"",
-	privs = {access=true},
+	privs = {worldedit=true},
 	func = safe_region(function(name, param)
 		local pos1, pos2 = worldedit.pos1[name], worldedit.pos2[name]
 		if param == "" then
@@ -895,7 +895,7 @@ minetest.register_chatcommand("/allocate", {
 minetest.register_chatcommand("/load", {
 	params = "<file>",
 	description = "Load nodes from \"(world folder)/schems/<file>[.we[m]]\" with position 1 of the current WorldEdit region as the origin",
-	privs = {access=true},
+	privs = {worldedit=true},
 	func = function(name, param)
 		local pos = get_position(name)
 		if pos == nil then return end
@@ -983,7 +983,7 @@ minetest.register_chatcommand("/luatransform", {
 minetest.register_chatcommand("/mtschemcreate", {
 	params = "<file>",
 	description = "Save the current WorldEdit region using the Minetest Schematic format to \"(world folder)/schems/<filename>.mts\"",
-	privs = {access=true},
+	privs = {worldedit=true},
 	func = safe_region(function(name, param)
 		local pos1, pos2 = worldedit.pos1[name], worldedit.pos2[name]
 		if param == nil then
@@ -1009,7 +1009,7 @@ minetest.register_chatcommand("/mtschemcreate", {
 minetest.register_chatcommand("/mtschemplace", {
 	params = "<file>",
 	description = "Load nodes from \"(world folder)/schems/<file>.mts\" with position 1 of the current WorldEdit region as the origin",
-	privs = {access=true},
+	privs = {worldedit=true},
 	func = function(name, param)
 		if param == nil then
 			worldedit.player_notify(name, "no filename specified")

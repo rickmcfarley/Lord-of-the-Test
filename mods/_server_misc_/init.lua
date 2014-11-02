@@ -6,7 +6,7 @@
 dofile(minetest.get_modpath("_server_misc_").."/welcome.lua")
 
 -- Aliases (Not Needed)
---dofile(minetest.get_modpath("_server_misc_").."/aliases.lua")
+dofile(minetest.get_modpath("_server_misc_").."/aliases.lua")
 
 -- Chatlog
 dofile(minetest.get_modpath("_server_misc_").."/channels.lua")
