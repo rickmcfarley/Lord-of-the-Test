@@ -168,6 +168,7 @@ function wikilib.get_wiki_page_formspec(player, name, w, h)
 
 	return ("size["..w..","..h.."]"
 		.. "field[0,1;11,1;page;Page;"..esc(name).."]"
+          .. "button[11,1;1,0.5;go;-]"
 		.. "textarea[0,2;12,6;text;"..esc(name)..";"..esc(text).."]"
 		.. buttons
 		.. toolbar
@@ -223,6 +224,12 @@ function wikilib.handle_formspec(player, formname, fields)
 		else
 			wikilib.show_wiki_page(plname, fields.page)
 		end
+		return true
+     elseif fields.go and minetest.check_player_privs(player:get_player_name(),{wiki_admin=true}) then
+		wikilib.show_wiki_page(plname, fields.page)
+		return true
+     elseif fields.go and minetest.check_player_privs(player:get_player_name(),{wiki_admin=false}) then
+		minetest.chat_send_player(plname, "This button is currently restricted, sorry for any inconvenience caused!")
 		return true
 	else
 		for k in pairs(fields) do
