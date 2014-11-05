@@ -4,12 +4,13 @@ Please read the rules before starting by pressing the "rules" button beside
 For all new players, give the "help" button a visit.
 
 If you encountered any problems, please contact one of the Head Administrators / Administrators / Moderators as seen in the list below:
-Head Administrators (Developers of LOTT): fishyWET, Amaz
-Administrators: coagen
-Moderators: AMMOnym, catninja, LittleJoe, puppy333, aragorntheking
+Head Administrator/ Developer: Amaz
+Administrators: coagen, catninja
+Moderators: AMMOnym, LittleJoe, puppy333, aragorntheking
+Retired Administrator/ Developer/ In-game Mercenary: fishyWET
 
 Player in charge of each Kingdom:
-Elven Kingdom: fishyWET (Ruler), LittleJoe (Second-In-Command)
+Elven Kingdom: LittleJoe (Ruler)
 Dwarven Kingdom: Amaz (Ruler), puppy333 (Second-In-Command)
 Mordor Kingdom: catninja (Ruler)
 Gondor Kingdom: aragorntheking (Ruler)
