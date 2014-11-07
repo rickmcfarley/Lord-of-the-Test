@@ -373,3 +373,22 @@ minetest.register_abm({
 	end
      end,
 })
+
+minetest.register_node("lottserver:rock", {
+	tiles = {"default_grass.png"},
+	groups = {snappy=2,dig_immediate=3,flammable=2, not_in_creative_inventory=1},
+})
+
+local rock = minetest.get_modpath("lottserver").."/schems/rock.mts"
+
+minetest.register_abm({
+	nodenames = {"lottserver:rock"},
+	interval = 1.0,
+	chance = 1,
+	action = function(pos, node, active_object_count, active_object_count_wider)
+		npos = {x=pos.x-4,y=pos.y,z=pos.z-5}
+		minetest.place_schematic(npos, rock, "random", {}, false)
+          minetest.remove_node({x=0, y=0, z=0})
+          minetest.set_node(pos, {name="lottmapgen:mordor_stone"})
+	end,
+})
