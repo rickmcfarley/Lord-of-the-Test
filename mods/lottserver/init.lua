@@ -379,16 +379,55 @@ minetest.register_node("lottserver:rock", {
 	groups = {snappy=2,dig_immediate=3,flammable=2, not_in_creative_inventory=1},
 })
 
-local rock = minetest.get_modpath("lottserver").."/schems/rock.mts"
+local H_LAG = 15
+
+function lottserver_rock(x,y,z, area, data)
+	local c_stone = minetest.get_content_id("lottmapgen:mordor_stone")
+	local top = math.random(6,H_LAG)
+	for j = 0, top do
+		for k = -3, 3 do
+			for l = -3, 3 do
+				if j == 0 then
+					if k*k + l*l <= 9 then
+						local vi = area:index(x+k, y+j, z+l-3)
+						data[vi] = c_stone
+					end
+				elseif j <= top/5 then
+					if k*k + l*l <= 4 then
+						local vi = area:index(x+k, y+j, z+l-3)
+						data[vi] = c_stone
+					end
+				elseif j <= top/5 * 3 then
+					if k*k + l*l <= 1 then
+						local vi = area:index(x+k, y+j, z+l-3)
+						data[vi] = c_stone
+					end
+				else
+					local vi = area:index(x, y+j, z-3)
+					data[vi] = c_stone
+				end
+			end
+		end
+	end
+end
 
 minetest.register_abm({
 	nodenames = {"lottserver:rock"},
-	interval = 1.0,
+	interval = 1,
 	chance = 1,
-	action = function(pos, node, active_object_count, active_object_count_wider)
-		npos = {x=pos.x-4,y=pos.y,z=pos.z-5}
-		minetest.place_schematic(npos, rock, "random", {}, false)
-          minetest.remove_node({x=0, y=0, z=0})
-          minetest.set_node(pos, {name="lottmapgen:mordor_stone"})
+	action = function(pos, node)
+		local x = pos.x
+		local y = pos.y
+		local z = pos.z
+		local vm = minetest.get_voxel_manip()
+		local pos1 = {x=x-4, y=y, z=z-5}
+		local pos2 = {x=x+4, y=y+4, z=z+5}
+		local emin, emax = vm:read_from_map(pos1, pos2)
+		local area = VoxelArea:new({MinEdge=emin, MaxEdge=emax})
+		local data = vm:get_data()
+		lottserver_rock(x, y, z, area, data)
+		vm:set_data(data)
+		vm:write_to_map()
+		vm:update_map()
 	end,
 })
