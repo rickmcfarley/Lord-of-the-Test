@@ -2,6 +2,16 @@
 -- Server Misc Mod --
 ---------------------
 
+minetest.register_privilege("home", {
+	description = "",
+	give_to_singleplayer = false,
+})
+
+minetest.register_privilege("jailed", {
+	description = "",
+	give_to_singleplayer = false,
+})
+
 -- Welcome Page
 dofile(minetest.get_modpath("_server_misc_").."/welcome.lua")
 
@@ -24,3 +34,6 @@ dofile(minetest.get_modpath("_server_misc_").."/privs.lua")
 
 --commands
 dofile(minetest.get_modpath("_server_misc_").."/commands.lua")
+
+--jail
+dofile(minetest.get_modpath("_server_misc_").."/jail.lua")

@@ -5,7 +5,7 @@ os.execute('mkdir "'..savedir..'"')
 minetest.register_chatcommand("spawn", {
     params = "",
     description = "Teleport to the spawn location.",
-    privs = {shout=true},
+    privs = {home=true},
     func = function(name, param)
             local player = minetest.env:get_player_by_name(name)
             minetest.chat_send_player(name, "Teleported to spawn!")
@@ -17,7 +17,7 @@ minetest.register_chatcommand("spawn", {
 minetest.register_chatcommand("FOS", {
     params = "",
     description = "Teleport to the FOS location.",
-    privs = {shout=true},
+    privs = {home=true},
     func = function(name, param)
             local player = minetest.env:get_player_by_name(name)
             minetest.chat_send_player(name, "Teleported to Foundations of Stone!")
@@ -42,7 +42,7 @@ minetest.register_chatcommand("AC", {
 minetest.register_chatcommand("sethome", {
         params = "",
         description = "Set your home location.",
-        privs = {shout=true},
+        privs = {home=true},
         func = function(name, param)
                 player = minetest.env:get_player_by_name(name)
                 test = player:getpos()
@@ -60,7 +60,7 @@ minetest.register_chatcommand("sethome", {
 minetest.register_chatcommand("sethome2", {
         params = "",
         description = "Set your second home location.",
-        privs = {shout=true},
+        privs = {home=true},
         func = function(name, param)
                 player = minetest.env:get_player_by_name(name)
                 test = player:getpos()
@@ -97,7 +97,7 @@ minetest.register_chatcommand("sethome3", {
 minetest.register_chatcommand("home", {
 	params = "",
 	description = "Teleport to your home location.",
-	privs = {shout=true},
+	privs = {home=true},
 	func = function(name, param)
 		player = minetest.env:get_player_by_name(name)
 		local file = io.open(minetest.get_worldpath().."/home/"..player:get_player_name().."_home", "r")
@@ -120,7 +120,7 @@ minetest.register_chatcommand("home", {
 minetest.register_chatcommand("home2", {
 	params = "",
 	description = "Teleport to your second home location.",
-	privs = {shout=true},
+	privs = {home=true},
 	func = function(name, param)
 		player = minetest.env:get_player_by_name(name)
 		local file = io.open(minetest.get_worldpath().."/home/"..player:get_player_name().."_home2", "r")
@@ -143,7 +143,7 @@ minetest.register_chatcommand("home2", {
 minetest.register_chatcommand("home2", {
 	params = "",
 	description = "Teleport to your second home location.",
-	privs = {access=true},
+	privs = {home=true},
 	func = function(name, param)
 		player = minetest.env:get_player_by_name(name)
 		local file = io.open(minetest.get_worldpath().."/home/"..player:get_player_name().."_home2", "r")
