@@ -1,6 +1,6 @@
 -- Based on https://github.com/TheZenKitteh/minetest-jail
 
-local jailpos = { x = 0, y = 0, z = 0 }
+local jailpos = { x = 20000, y = 9991, z = 20059 }
 local players_in_jail = { };
 
 minetest.register_chatcommand("jail", {
@@ -22,7 +22,7 @@ minetest.register_chatcommand("jail", {
     end,
 })
 
-local releasepos = { x = 0, y = 0, z = 0 }
+local releasepos = { x = 59, y = 5, z = -120 }
 minetest.register_chatcommand("release", {
     params = "<player>",
     description = "Releases a player from Jail",
@@ -50,4 +50,3 @@ local function do_teleport ( )
     minetest.after(30, do_teleport)
 end
 minetest.after(30, do_teleport)
-
