@@ -43,10 +43,19 @@ minetest.register_chatcommand("release", {
     end,
 })
 
-local function do_teleport ( )
-    for name, player in pairs(players_in_jail) do
-            player:setpos(jailpos)
-    end
-    minetest.after(30, do_teleport)
-end
-minetest.after(30, do_teleport)
+local count = 0
+minetest.register_globalstep(function(dtime)   
+        count = count + dtime
+        if count > 0.5 then
+                count = 0
+                for _,player in ipairs(minetest.get_connected_players()) do
+		        local name = player:get_player_name()
+		        if minetest.check_player_privs(name,{jailed=true}) then
+                                local pos = player:getpos()
+                                if pos.y < 8000 then
+                                        player:setpos(jailpos)
+                                end
+                        end
+                end
+        end
+end)
