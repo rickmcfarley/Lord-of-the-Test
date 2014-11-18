@@ -1,7 +1,6 @@
 -- Based on https://github.com/TheZenKitteh/minetest-jail
 
 local jailpos = { x = 20000, y = 9991, z = 20059 }
-local players_in_jail = { };
 
 minetest.register_chatcommand("jail", {
     params = "<player>",
@@ -10,7 +9,6 @@ minetest.register_chatcommand("jail", {
     func = function ( name, param )
         local player = minetest.env:get_player_by_name(param)
         if (player) then
-            players_in_jail[param] = player;
             player:setpos(jailpos)
 			local privs = minetest.get_player_privs(param)
 	        privs.home = nil
@@ -30,7 +28,6 @@ minetest.register_chatcommand("release", {
     func = function ( name, param )
         if (param == "") then return end
         local player = minetest.env:get_player_by_name(param)
-        players_in_jail[param] = nil;
         if (player) then
             player:setpos(releasepos)
 			local privs = minetest.get_player_privs(param)
