@@ -260,3 +260,23 @@ minetest.register_craft({
 		{'default:stone', 'default:coal_lump'},
 	}
 })
+
+-- Elven stone, credits to LittleJoe
+
+minetest.register_node("lottblocks:elven_stone", {
+   description = "Elven Bricks",
+   tile_images = {"lottblocks_elven_stone.png"},
+   is_ground_content = false,
+   groups={cracky=3},
+})
+ 
+--CRAFT
+ 
+minetest.register_craft({
+        output = "lottblocks:elven_stone 2",
+        recipe = {
+                {'default:stone', 'default:stone', ''},
+                {'lottplants:mallornwood', 'lottplants:mallornwood', ''},
+                {'', '', ''},
+        }
+})
