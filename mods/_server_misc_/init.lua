@@ -37,3 +37,6 @@ dofile(minetest.get_modpath("_server_misc_").."/commands.lua")
 
 --jail
 dofile(minetest.get_modpath("_server_misc_").."/jail.lua")
+
+-- Player Info
+dofile(minetest.get_modpath("_server_misc_").."/playerinfo.lua")

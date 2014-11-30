@@ -12,9 +12,9 @@ function hp_bar:on_step(dtime)
   if wielder == nil then 
      self.object:remove()
      return   
-  elseif minetest.env:get_player_by_name(wielder:get_player_name()) == nil then 
+  elseif minetest.env:get_player_by_name(wielder:get_player_name()) == nil then
      self.object:remove()
-     return 
+     return
   end
   hp = wielder:get_hp()
   self.object:set_properties({
@@ -31,8 +31,8 @@ function add_HP_gauge(pl)
     if ent~= nil then
        ent:set_attach(pl, "", {x=0,y=9,z=0}, {x=0,y=0,z=0})
        ent:set_attach(pl, "", {x=0,y=11,z=0}, {x=0,y=0,z=0})
-       ent = ent:get_luaentity() 
-       ent.wielder = pl       
+       ent = ent:get_luaentity()
+       ent.wielder = pl
     end
 end
 

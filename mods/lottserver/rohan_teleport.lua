@@ -80,14 +80,14 @@ teleporter_rohan.formspec = function (meta)
 end
 
 minetest.register_node("lottserver:rohan_teleporter", {
-  description = "Rohirrim Teleporter",
+  description = "Men Teleporter",
   tiles = {"lottmapgen_rohan_grass.png"},
   groups = {core_structure=1},
   drop = {
 		max_items = 2,
 		items = {
 			{ items = {'currency:minegeld 30'} },
-			{ items = {'lottserver:rohan_outpost_trophy'} },
+			{ items = {'lottserver:men_outpost_trophy'} },
 		}
    },
   drawtype = "nodebox",
@@ -106,7 +106,7 @@ minetest.register_node("lottserver:rohan_teleporter", {
   on_punch = function(pos, node, puncher, pointed_thing)
     local puncher_name = puncher:get_player_name()
     local puncher_privs = minetest.get_player_privs(puncher_name)
-    if (puncher_privs["rohirrim"] == true) then
+    if (puncher_privs["men"] == true) then
     local meta = minetest.env:get_meta(pos)
     local link = meta:get_string("link")
     local newpos = {}

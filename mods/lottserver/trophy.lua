@@ -8,7 +8,7 @@ minetest.register_node("lottserver:dwarf_trophy_bronze", {
   drop = {
 		max_items = 2,
 		items = {
-			{ items = {'currency:minegeld 50'} },
+			{ items = {'currency:minegeld_10 1000'} },
 			{ items = {'lottserver:dwarf_trophy_bronze_display'} },
 		}
    },
@@ -51,7 +51,7 @@ minetest.register_node("lottserver:mordor_trophy_bronze", {
   drop = {
 		max_items = 2,
 		items = {
-			{ items = {'currency:minegeld 50'} },
+			{ items = {'currency:minegeld_10 1000'} },
 			{ items = {'lottserver:mordor_trophy_bronze_display'} },
 		}
    },
@@ -94,7 +94,7 @@ minetest.register_node("lottserver:elf_trophy_bronze", {
   drop = {
 		max_items = 2,
 		items = {
-			{ items = {'currency:minegeld 50'} },
+			{ items = {'currency:minegeld_10 1000'} },
 			{ items = {'lottserver:elf_trophy_bronze_display'} },
 		}
    },
@@ -129,21 +129,21 @@ minetest.register_on_punchnode(function(pos, node, puncher, pointed_thing)
 	end
 end)
 
-minetest.register_node("lottserver:rohan_trophy_bronze", {
-  description = "Rohirrim Bronze Trophy",
+minetest.register_node("lottserver:men_trophy_bronze", {
+  description = "Men Bronze Trophy",
   tiles = {"lottserver_bronze.png"},
   groups = {core_structure=1},
   drawtype = "nodebox",
   drop = {
 		max_items = 2,
 		items = {
-			{ items = {'currency:minegeld 50'} },
-			{ items = {'lottserver:rohan_trophy_bronze_display'} },
+			{ items = {'currency:minegeld_10 1000'} },
+			{ items = {'lottserver:men_trophy_bronze_display'} },
 		}
    },
   on_construct = function(pos)
 		local meta = minetest.get_meta(pos)
-		meta:set_string("infotext", "Rohan Kingdom Bronze Trophy")
+		meta:set_string("infotext", "men Kingdom Bronze Trophy")
   end,
   light_source = 10,
   node_box = {
@@ -166,52 +166,9 @@ minetest.register_node("lottserver:rohan_trophy_bronze", {
 })
 
 minetest.register_on_punchnode(function(pos, node, puncher, pointed_thing)
-	if node.name == "lottserver:rohan_trophy_bronze" then
+	if node.name == "lottserver:men_trophy_bronze" then
 		local puncher_name = puncher:get_player_name()
-		minetest.chat_send_all("Hey!! ".. puncher_name .." is hitting a Rohirrim Bronze Trophy. Members of the Rohan Kingdom, defend your Bronze Trophy!")
-	end
-end)
-
-minetest.register_node("lottserver:gondor_trophy_bronze", {
-  description = "Gondorian Bronze Trophy",
-  tiles = {"lottserver_bronze.png"},
-  groups = {core_structure=1},
-  drawtype = "nodebox",
-  drop = {
-		max_items = 2,
-		items = {
-			{ items = {'currency:minegeld 50'} },
-			{ items = {'lottserver:gondor_trophy_bronze_display'} },
-		}
-   },
-  on_construct = function(pos)
-		local meta = minetest.get_meta(pos)
-		meta:set_string("infotext", "Gondor Kingdom Bronze Trophy")
-  end,
-  light_source = 10,
-  node_box = {
-		type = "fixed",
-		fixed = {
-			{-0.4,-0.5,-0.4,0.4,-0.4375,0.4},
-               {-0.35,-0.4375,-0.35,0.35,-0.375,0.35},
-               {-0.32,-0.375,-0.32,0.32,-0.3125,0.32},
-               {-0.3,-0.3125,-0.3,0.3,-0.25,0.3},
-               {-0.25,-0.25,-0.25,0.25,-0.1875,0.25},
-               {-0.22,-0.22,-0.22,0.22,-0.125,0.22},
-               { -0.0625,-0.125,-0.0625,0.0625,0,0.0625},
-               {-0.25,0.0625,-0.25,0.25,0,0.25},
-               {0.1875,0,-0.25,0.25,0.5,0.25},
-               {-0.25,0,-0.25,-0.1875,0.5,0.25},
-               {-0.25,0,0.1875,0.25,0.496587,0.25},
-               {-0.25,0,-0.25,0.25,0.5,-0.1875},
-		}
-   }
-})
-
-minetest.register_on_punchnode(function(pos, node, puncher, pointed_thing)
-	if node.name == "lottserver:gondor_trophy_bronze" then
-		local puncher_name = puncher:get_player_name()
-		minetest.chat_send_all("Hey!! ".. puncher_name .." is hitting a Gondorian Bronze Trophy. Members of the Gondor Kingdom, defend your Bronze Trophy!")
+		minetest.chat_send_all("Hey!! ".. puncher_name .." is hitting a Men Bronze Trophy. Members of the Kingdom of Men, defend your Bronze Trophy!")
 	end
 end)
 
@@ -225,7 +182,7 @@ minetest.register_node("lottserver:dwarf_trophy_silver", {
   drop = {
 		max_items = 2,
 		items = {
-			{ items = {'currency:minegeld 200'} },
+			{ items = {'currency:minegeld_10 5000'} },
 			{ items = {'lottserver:dwarf_trophy_silver_display'} },
 		}
    },
@@ -268,7 +225,7 @@ minetest.register_node("lottserver:mordor_trophy_silver", {
   drop = {
 		max_items = 2,
 		items = {
-			{ items = {'currency:minegeld 200'} },
+			{ items = {'currency:minegeld_10 5000'} },
 			{ items = {'lottserver:mordor_trophy_silver_display'} },
 		}
    },
@@ -311,7 +268,7 @@ minetest.register_node("lottserver:elf_trophy_silver", {
   drop = {
 		max_items = 2,
 		items = {
-			{ items = {'currency:minegeld 200'} },
+			{ items = {'currency:minegeld_10 5000'} },
 			{ items = {'lottserver:elf_trophy_silver_display'} },
 		}
    },
@@ -346,21 +303,21 @@ minetest.register_on_punchnode(function(pos, node, puncher, pointed_thing)
 	end
 end)
 
-minetest.register_node("lottserver:rohan_trophy_silver", {
-  description = "Rohirrim Silver Trophy",
+minetest.register_node("lottserver:men_trophy_silver", {
+  description = "Men Silver Trophy",
   tiles = {"lottserver_silver.png"},
   groups = {core_structure=2},
   drawtype = "nodebox",
   drop = {
 		max_items = 2,
 		items = {
-			{ items = {'currency:minegeld 200'} },
-			{ items = {'lottserver:rohan_trophy_silver_display'} },
+			{ items = {'currency:minegeld_10 5000'} },
+			{ items = {'lottserver:men_trophy_silver_display'} },
 		}
    },
   on_construct = function(pos)
 		local meta = minetest.get_meta(pos)
-		meta:set_string("infotext", "Rohan Kingdom Silver Trophy")
+		meta:set_string("infotext", "men Kingdom Silver Trophy")
   end,
   light_source = 10,
   node_box = {
@@ -383,52 +340,9 @@ minetest.register_node("lottserver:rohan_trophy_silver", {
 })
 
 minetest.register_on_punchnode(function(pos, node, puncher, pointed_thing)
-	if node.name == "lottserver:rohan_trophy_silver" then
+	if node.name == "lottserver:men_trophy_silver" then
 		local puncher_name = puncher:get_player_name()
-		minetest.chat_send_all("Hey!! ".. puncher_name .." is hitting a Rohirrim Silver Trophy. Members of the Rohan Kingdom, defend your Silver Trophy!")
-	end
-end)
-
-minetest.register_node("lottserver:gondor_trophy_silver", {
-  description = "Gondorian Silver Trophy",
-  tiles = {"lottserver_silver.png"},
-  groups = {core_structure=2},
-  drawtype = "nodebox",
-  drop = {
-		max_items = 2,
-		items = {
-			{ items = {'currency:minegeld 200'} },
-			{ items = {'lottserver:gondor_trophy_silver_display'} },
-		}
-   },
-  on_construct = function(pos)
-		local meta = minetest.get_meta(pos)
-		meta:set_string("infotext", "Gondor Kingdom Silver Trophy")
-  end,
-  light_source = 10,
-  node_box = {
-		type = "fixed",
-		fixed = {
-			{-0.4,-0.5,-0.4,0.4,-0.4375,0.4},
-               {-0.35,-0.4375,-0.35,0.35,-0.375,0.35},
-               {-0.32,-0.375,-0.32,0.32,-0.3125,0.32},
-               {-0.3,-0.3125,-0.3,0.3,-0.25,0.3},
-               {-0.25,-0.25,-0.25,0.25,-0.1875,0.25},
-               {-0.22,-0.22,-0.22,0.22,-0.125,0.22},
-               { -0.0625,-0.125,-0.0625,0.0625,0,0.0625},
-               {-0.25,0.0625,-0.25,0.25,0,0.25},
-               {0.1875,0,-0.25,0.25,0.5,0.25},
-               {-0.25,0,-0.25,-0.1875,0.5,0.25},
-               {-0.25,0,0.1875,0.25,0.496587,0.25},
-               {-0.25,0,-0.25,0.25,0.5,-0.1875},
-		}
-   }
-})
-
-minetest.register_on_punchnode(function(pos, node, puncher, pointed_thing)
-	if node.name == "lottserver:gondor_trophy_silver" then
-		local puncher_name = puncher:get_player_name()
-		minetest.chat_send_all("Hey!! ".. puncher_name .." is hitting a Gondorian Silver Trophy. Members of the Gondor Kingdom, defend your Silver Trophy!")
+		minetest.chat_send_all("Hey!! ".. puncher_name .." is hitting a Men Silver Trophy. Members of the Kingdom of Men defend your Silver Trophy!")
 	end
 end)
 
@@ -442,7 +356,7 @@ minetest.register_node("lottserver:dwarf_trophy_gold", {
   drop = {
 		max_items = 2,
 		items = {
-			{ items = {'currency:minegeld 500'} },
+			{ items = {'currency:minegeld_10 10000'} },
 			{ items = {'lottserver:dwarf_trophy_gold_display'} },
 		}
    },
@@ -485,7 +399,7 @@ minetest.register_node("lottserver:mordor_trophy_gold", {
   drop = {
 		max_items = 2,
 		items = {
-			{ items = {'currency:minegeld 500'} },
+			{ items = {'currency:minegeld_10 10000'} },
 			{ items = {'lottserver:mordor_trophy_gold_display'} },
 		}
    },
@@ -528,7 +442,7 @@ minetest.register_node("lottserver:elf_trophy_gold", {
   drop = {
 		max_items = 2,
 		items = {
-			{ items = {'currency:minegeld 500'} },
+			{ items = {'currency:minegeld_10 10000'} },
 			{ items = {'lottserver:elf_trophy_gold_display'} },
 		}
    },
@@ -563,21 +477,21 @@ minetest.register_on_punchnode(function(pos, node, puncher, pointed_thing)
 	end
 end)
 
-minetest.register_node("lottserver:rohan_trophy_gold", {
-  description = "Rohirrim Gold Trophy",
+minetest.register_node("lottserver:men_trophy_gold", {
+  description = "Men Gold Trophy",
   tiles = {"lottserver_gold.png"},
   groups = {core_structure=3},
   drawtype = "nodebox",
   drop = {
 		max_items = 2,
 		items = {
-			{ items = {'currency:minegeld 500'} },
-			{ items = {'lottserver:rohan_trophy_gold_display'} },
+			{ items = {'currency:minegeld_10 10000'} },
+			{ items = {'lottserver:men_trophy_gold_display'} },
 		}
    },
   on_construct = function(pos)
 		local meta = minetest.get_meta(pos)
-		meta:set_string("infotext", "Rohan Kingdom Gold Trophy")
+		meta:set_string("infotext", "men Kingdom Gold Trophy")
   end,
   light_source = 10,
   node_box = {
@@ -600,52 +514,9 @@ minetest.register_node("lottserver:rohan_trophy_gold", {
 })
 
 minetest.register_on_punchnode(function(pos, node, puncher, pointed_thing)
-	if node.name == "lottserver:rohan_trophy_gold" then
+	if node.name == "lottserver:men_trophy_gold" then
 		local puncher_name = puncher:get_player_name()
-		minetest.chat_send_all("Hey!! ".. puncher_name .." is hitting a Rohirrim Gold Trophy. Members of the Rohan Kingdom, defend your Gold Trophy!")
-	end
-end)
-
-minetest.register_node("lottserver:gondor_trophy_gold", {
-  description = "Gondorian Gold Trophy",
-  tiles = {"lottserver_gold.png"},
-  groups = {core_structure=3},
-  drawtype = "nodebox",
-  drop = {
-		max_items = 2,
-		items = {
-			{ items = {'currency:minegeld 500'} },
-			{ items = {'lottserver:gondor_trophy_gold_display'} },
-		}
-   },
-  on_construct = function(pos)
-		local meta = minetest.get_meta(pos)
-		meta:set_string("infotext", "Gondor Kingdom Gold Trophy")
-  end,
-  light_source = 10,
-  node_box = {
-		type = "fixed",
-		fixed = {
-			{-0.4,-0.5,-0.4,0.4,-0.4375,0.4},
-               {-0.35,-0.4375,-0.35,0.35,-0.375,0.35},
-               {-0.32,-0.375,-0.32,0.32,-0.3125,0.32},
-               {-0.3,-0.3125,-0.3,0.3,-0.25,0.3},
-               {-0.25,-0.25,-0.25,0.25,-0.1875,0.25},
-               {-0.22,-0.22,-0.22,0.22,-0.125,0.22},
-               { -0.0625,-0.125,-0.0625,0.0625,0,0.0625},
-               {-0.25,0.0625,-0.25,0.25,0,0.25},
-               {0.1875,0,-0.25,0.25,0.5,0.25},
-               {-0.25,0,-0.25,-0.1875,0.5,0.25},
-               {-0.25,0,0.1875,0.25,0.496587,0.25},
-               {-0.25,0,-0.25,0.25,0.5,-0.1875},
-		}
-   }
-})
-
-minetest.register_on_punchnode(function(pos, node, puncher, pointed_thing)
-	if node.name == "lottserver:gondor_trophy_gold" then
-		local puncher_name = puncher:get_player_name()
-		minetest.chat_send_all("Hey!! ".. puncher_name .." is hitting a Gondorian Gold Trophy. Members of the Gondor Kingdom, defend your Gold Trophy!")
+		minetest.chat_send_all("Hey!! ".. puncher_name .." is hitting a Men Gold Trophy. Members of the Kingdom of Men, defend your Gold Trophy!")
 	end
 end)
 
@@ -739,43 +610,14 @@ minetest.register_node("lottserver:elf_trophy_bronze_display", {
    }
 })
 
-minetest.register_node("lottserver:rohan_trophy_bronze_display", {
-  description = "Beaten Rohirrim Bronze Display Trophy",
+minetest.register_node("lottserver:men_trophy_bronze_display", {
+  description = "Beaten Men Bronze Display Trophy",
   tiles = {"lottserver_bronze.png"},
   groups = {core_structure=1},
   drawtype = "nodebox",
   on_construct = function(pos)
 		local meta = minetest.get_meta(pos)
-		meta:set_string("infotext", "Successfully Infiltrated the Kingdom of Rohan")
-  end,
-  light_source = 10,
-  node_box = {
-		type = "fixed",
-		fixed = {
-			{-0.4,-0.5,-0.4,0.4,-0.4375,0.4},
-               {-0.35,-0.4375,-0.35,0.35,-0.375,0.35},
-               {-0.32,-0.375,-0.32,0.32,-0.3125,0.32},
-               {-0.3,-0.3125,-0.3,0.3,-0.25,0.3},
-               {-0.25,-0.25,-0.25,0.25,-0.1875,0.25},
-               {-0.22,-0.22,-0.22,0.22,-0.125,0.22},
-               { -0.0625,-0.125,-0.0625,0.0625,0,0.0625},
-               {-0.25,0.0625,-0.25,0.25,0,0.25},
-               {0.1875,0,-0.25,0.25,0.5,0.25},
-               {-0.25,0,-0.25,-0.1875,0.5,0.25},
-               {-0.25,0,0.1875,0.25,0.496587,0.25},
-               {-0.25,0,-0.25,0.25,0.5,-0.1875},
-		}
-   }
-})
-
-minetest.register_node("lottserver:gondor_trophy_bronze_display", {
-  description = "Beaten Gondorian Bronze Display Trophy",
-  tiles = {"lottserver_bronze.png"},
-  groups = {core_structure=1},
-  drawtype = "nodebox",
-  on_construct = function(pos)
-		local meta = minetest.get_meta(pos)
-		meta:set_string("infotext", "Successfully Infiltrated the Kingdom of Gondor")
+		meta:set_string("infotext", "Successfully Infiltrated the Kingdom of Men")
   end,
   light_source = 10,
   node_box = {
@@ -886,43 +728,14 @@ minetest.register_node("lottserver:elf_trophy_silver_display", {
    }
 })
 
-minetest.register_node("lottserver:rohan_trophy_silver_display", {
-  description = "Beaten Rohirrim Silver Display Trophy",
+minetest.register_node("lottserver:men_trophy_silver_display", {
+  description = "Beaten Men Silver Display Trophy",
   tiles = {"lottserver_silver.png"},
   groups = {core_structure=1},
   drawtype = "nodebox",
   on_construct = function(pos)
 		local meta = minetest.get_meta(pos)
-		meta:set_string("infotext", "Took Full Control of the Kingdom of Rohan")
-  end,
-  light_source = 10,
-  node_box = {
-		type = "fixed",
-		fixed = {
-			{-0.4,-0.5,-0.4,0.4,-0.4375,0.4},
-               {-0.35,-0.4375,-0.35,0.35,-0.375,0.35},
-               {-0.32,-0.375,-0.32,0.32,-0.3125,0.32},
-               {-0.3,-0.3125,-0.3,0.3,-0.25,0.3},
-               {-0.25,-0.25,-0.25,0.25,-0.1875,0.25},
-               {-0.22,-0.22,-0.22,0.22,-0.125,0.22},
-               { -0.0625,-0.125,-0.0625,0.0625,0,0.0625},
-               {-0.25,0.0625,-0.25,0.25,0,0.25},
-               {0.1875,0,-0.25,0.25,0.5,0.25},
-               {-0.25,0,-0.25,-0.1875,0.5,0.25},
-               {-0.25,0,0.1875,0.25,0.496587,0.25},
-               {-0.25,0,-0.25,0.25,0.5,-0.1875},
-		}
-   }
-})
-
-minetest.register_node("lottserver:gondor_trophy_silver_display", {
-  description = "Beaten Gondorian Silver Display Trophy",
-  tiles = {"lottserver_silver.png"},
-  groups = {core_structure=1},
-  drawtype = "nodebox",
-  on_construct = function(pos)
-		local meta = minetest.get_meta(pos)
-		meta:set_string("infotext", "Took Full Control of the Kingdom of Gondor")
+		meta:set_string("infotext", "Took Full Control of the Kingdom of Men")
   end,
   light_source = 10,
   node_box = {
@@ -1033,43 +846,14 @@ minetest.register_node("lottserver:elf_trophy_gold_display", {
    }
 })
 
-minetest.register_node("lottserver:rohan_trophy_gold_display", {
-  description = "Beaten Rohirrim Gold Display Trophy",
+minetest.register_node("lottserver:men_trophy_gold_display", {
+  description = "Beaten Men Gold Display Trophy",
   tiles = {"lottserver_gold.png"},
   groups = {core_structure=1},
   drawtype = "nodebox",
   on_construct = function(pos)
 		local meta = minetest.get_meta(pos)
-		meta:set_string("infotext", "Destroyed the Rohan Kingdom")
-  end,
-  light_source = 10,
-  node_box = {
-		type = "fixed",
-		fixed = {
-			{-0.4,-0.5,-0.4,0.4,-0.4375,0.4},
-               {-0.35,-0.4375,-0.35,0.35,-0.375,0.35},
-               {-0.32,-0.375,-0.32,0.32,-0.3125,0.32},
-               {-0.3,-0.3125,-0.3,0.3,-0.25,0.3},
-               {-0.25,-0.25,-0.25,0.25,-0.1875,0.25},
-               {-0.22,-0.22,-0.22,0.22,-0.125,0.22},
-               { -0.0625,-0.125,-0.0625,0.0625,0,0.0625},
-               {-0.25,0.0625,-0.25,0.25,0,0.25},
-               {0.1875,0,-0.25,0.25,0.5,0.25},
-               {-0.25,0,-0.25,-0.1875,0.5,0.25},
-               {-0.25,0,0.1875,0.25,0.496587,0.25},
-               {-0.25,0,-0.25,0.25,0.5,-0.1875},
-		}
-   }
-})
-
-minetest.register_node("lottserver:gondor_trophy_gold_display", {
-  description = "Beaten Gondorian Gold Display Trophy",
-  tiles = {"lottserver_gold.png"},
-  groups = {core_structure=1},
-  drawtype = "nodebox",
-  on_construct = function(pos)
-		local meta = minetest.get_meta(pos)
-		meta:set_string("infotext", "Destroyed the Gondor Kingdom")
+		meta:set_string("infotext", "Destroyed the Kingdom of Men")
   end,
   light_source = 10,
   node_box = {
@@ -1179,43 +963,14 @@ minetest.register_node("lottserver:elf_outpost_trophy", {
    }
 })
 
-minetest.register_node("lottserver:rohan_outpost_trophy", {
-  description = "Destroyed Rohirrim Outpost Trophy",
+minetest.register_node("lottserver:men_outpost_trophy", {
+  description = "Destroyed Men Outpost Trophy",
   tiles = {"lottserver_bronze.png"},
   groups = {core_structure=3},
   drawtype = "nodebox",
   on_construct = function(pos)
 		local meta = minetest.get_meta(pos)
-		meta:set_string("infotext", "Successfully Destroyed Rohirrim Outpost")
-   end,
-  light_source = 10,
-  node_box = {
-		type = "fixed",
-		fixed = {
-			{-0.4,-0.5,-0.4,0.4,-0.4375,0.4},
-               {-0.35,-0.4375,-0.35,0.35,-0.375,0.35},
-               {-0.32,-0.375,-0.32,0.32,-0.3125,0.32},
-               {-0.3,-0.3125,-0.3,0.3,-0.25,0.3},
-               {-0.25,-0.25,-0.25,0.25,-0.1875,0.25},
-               {-0.22,-0.22,-0.22,0.22,-0.125,0.22},
-               { -0.0625,-0.125,-0.0625,0.0625,0,0.0625},
-               {-0.25,0.0625,-0.25,0.25,0,0.25},
-               {0.1875,0,-0.25,0.25,0.5,0.25},
-               {-0.25,0,-0.25,-0.1875,0.5,0.25},
-               {-0.25,0,0.1875,0.25,0.496587,0.25},
-               {-0.25,0,-0.25,0.25,0.5,-0.1875},
-		}
-   }
-})
-
-minetest.register_node("lottserver:gondor_outpost_trophy", {
-  description = "Destroyed Gondorian Outpost Trophy",
-  tiles = {"lottserver_bronze.png"},
-  groups = {core_structure=3},
-  drawtype = "nodebox",
-  on_construct = function(pos)
-		local meta = minetest.get_meta(pos)
-		meta:set_string("infotext", "Successfully Destroyed Gondorian Outpost")
+		meta:set_string("infotext", "Successfully Destroyed Men Outpost")
    end,
   light_source = 10,
   node_box = {

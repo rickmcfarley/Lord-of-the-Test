@@ -2,7 +2,6 @@
 dofile(minetest.get_modpath(minetest.get_current_modname()).."/dwarf_teleport.lua")
 dofile(minetest.get_modpath(minetest.get_current_modname()).."/elf_teleport.lua")
 dofile(minetest.get_modpath(minetest.get_current_modname()).."/rohan_teleport.lua")
-dofile(minetest.get_modpath(minetest.get_current_modname()).."/gondor_teleport.lua")
 dofile(minetest.get_modpath(minetest.get_current_modname()).."/mordor_teleport.lua")
 dofile(minetest.get_modpath(minetest.get_current_modname()).."/trophy.lua")
 
@@ -16,13 +15,8 @@ minetest.register_privilege("elven", {
 	give_to_singleplayer= false,
 })
 
-minetest.register_privilege("rohirrim", {
-	description = "Citizen of the Rohan Kingdom",
-	give_to_singleplayer= false,
-})
-
-minetest.register_privilege("gondorian", {
-	description = "Citizen of the Gondor Kingdom",
+minetest.register_privilege("men", {
+	description = "Citizen of the Kingdom of Men",
 	give_to_singleplayer= false,
 })
 
@@ -168,7 +162,7 @@ minetest.register_chatcommand("induct", {
 		local privs = minetest.get_player_privs(grantname)
 		local privs_unknown = ""
 		for priv, _ in pairs(grantprivs) do
-			if priv ~= "elven" and priv ~= "dwarven" and priv ~= "rohirrim" and priv ~= "gondorian" and priv ~= "forsaken" and priv ~= "mordor" then
+			if priv ~= "elven" and priv ~= "dwarven" and priv ~= "men" and priv ~= "forsaken" and priv ~= "mordor" then
 				return false, "Your privileges are insufficient."
 			end
 			if not minetest.registered_privileges[priv] then
@@ -230,6 +224,361 @@ minetest.register_chatcommand("promote", {
 				minetest.get_player_privs(grantname), ' ')
 	end,
 })
+
+kingdom = {}
+kingdom.men = {}
+kingdom.elven = {}
+kingdom.dwarven = {}
+kingdom.mordor = {}
+kingdom.forsaken = {}
+kingdom.less = {}
+
+local timer = 0
+minetest.register_globalstep(function(dtime)
+	timer = timer + dtime;
+	if timer >= 1 then
+		for _,player in ipairs(minetest.get_connected_players()) do
+		        local name = player:get_player_name()
+		        if minetest.check_player_privs(name,{men=true}) then
+                    kingdom.men[name] = true
+					kingdom.less[name] = nil
+			    elseif minetest.check_player_privs(name,{elven=true}) then
+				    kingdom.elven[name] = true
+					kingdom.less[name] = nil
+			    elseif minetest.check_player_privs(name,{dwarven=true}) then
+				    kingdom.dwarven[name] = true
+					kingdom.less[name] = nil
+			    elseif minetest.check_player_privs(name,{mordor=true}) then
+				    kingdom.mordor[name] = true
+					kingdom.less[name] = nil
+			    elseif minetest.check_player_privs(name,{forsaken=true}) then
+				    kingdom.forsaken[name] = true
+					kingdom.less[name] = nil
+			    elseif minetest.check_player_privs(name,{men=true}) then
+                    kingdom.men[name] = true
+					kingdom.less[name] = nil
+				else kingdom.less[name] = true
+                end
+				if minetest.check_player_privs(name,{elven=true}) then
+				    kingdom.elven[name] = true
+					kingdom.less[name] = nil
+			    end
+				if minetest.check_player_privs(name,{dwarven=true}) then
+				    kingdom.dwarven[name] = true
+					kingdom.less[name] = nil
+				end
+			    if minetest.check_player_privs(name,{mordor=true}) then
+				    kingdom.mordor[name] = true
+					kingdom.less[name] = nil
+				end
+			    if minetest.check_player_privs(name,{forsaken=true}) then
+				    kingdom.forsaken[name] = true
+					kingdom.less[name] = nil
+			    end
+				if not minetest.check_player_privs(name,{men=true}) then
+                    kingdom.men[name] = nil
+			    elseif not minetest.check_player_privs(name,{elven=true}) then
+				    kingdom.elven[name] = nil
+			    elseif not minetest.check_player_privs(name,{dwarven=true}) then
+				    kingdom.dwarven[name] = nil
+			    elseif not minetest.check_player_privs(name,{mordor=true}) then
+				    kingdom.mordor[name] = nil
+			    elseif not minetest.check_player_privs(name,{forsaken=true}) then
+				    kingdom.forsaken[name] = nil
+			    elseif not minetest.check_player_privs(name,{men=true}) then
+				    kingdom.men[name] = nil
+                end
+				timer = 0
+				men_names = ""
+	            for k, v in pairs(kingdom.men) do
+		            men_names = men_names..", "..k
+	            end
+				gondorian_names = ""
+				elven_names = ""
+				for k, v in pairs(kingdom.elven) do
+		            elven_names = elven_names..", "..k
+	            end
+				dwarven_names = ""
+				for k, v in pairs(kingdom.dwarven) do
+		            dwarven_names = dwarven_names..", "..k
+	            end
+				mordor_names = ""
+				for k, v in pairs(kingdom.mordor) do
+		            mordor_names = mordor_names..", "..k
+	            end
+				forsaken_names = ""
+				for k, v in pairs(kingdom.forsaken) do
+		            forsaken_names = forsaken_names..", "..k
+	            end
+				kingdomless_names = ""
+				for k, v in pairs(kingdom.less) do
+		            kingdomless_names = kingdomless_names..", "..k
+	            end
+		end
+	end
+end)
+
+minetest.register_chatcommand("kingdom", {
+	description = "",
+	func = function(name)
+		minetest.chat_send_player(name, "The Kingdomless: "..kingdomless_names.. " | All Men: "..men_names.. " | All Elves: "..elven_names.. " | All Dwarves: "..dwarven_names.. " | All Minions of Mordor: "..mordor_names.. " | The Forsaken: "..forsaken_names)
+    end,
+})
+
+local dwarf_bar = {
+	physical = false,
+    collisionbox = {x=0, y=0, z=0},
+	visual = "sprite",
+	textures = {"dwarf_bar.png"},
+	visual_size = {x=1, y=1/8, z=1},
+	wielder = nil,
+}
+
+minetest.register_entity("lottserver:dwarf_bar", dwarf_bar)
+
+local elf_bar = {
+	physical = false,
+    collisionbox = {x=0, y=0, z=0},
+	visual = "sprite",
+	textures = {"elf_bar.png"},
+	visual_size = {x=1, y=1/8, z=1},
+	wielder = nil,
+}
+
+minetest.register_entity("lottserver:elf_bar", elf_bar)
+
+local men_bar = {
+	physical = false,
+    collisionbox = {x=0, y=0, z=0},
+	visual = "sprite",
+	textures = {"men_bar.png"},
+	visual_size = {x=1, y=1/8, z=1},
+	wielder = nil,
+}
+
+minetest.register_entity("lottserver:men_bar", men_bar)
+
+local mordor_bar = {
+	physical = false,
+    collisionbox = {x=0, y=0, z=0},
+	visual = "sprite",
+	textures = {"mordor_bar.png"},
+	visual_size = {x=1, y=1/8, z=1},
+	wielder = nil,
+}
+
+minetest.register_entity("lottserver:mordor_bar", mordor_bar)
+
+local forsaken_bar = {
+	physical = false,
+    collisionbox = {x=0, y=0, z=0},
+	visual = "sprite",
+	textures = {"forsaken_bar.png"},
+	visual_size = {x=1, y=1/8, z=1},
+	wielder = nil,
+}
+
+minetest.register_entity("lottserver:mordor_bar", mordor_bar)
+
+function dwarf_bar:on_step(dtime)
+  local wielder = self.wielder
+  if wielder == nil then 
+     self.object:remove()
+     return   
+  elseif minetest.env:get_player_by_name(wielder:get_player_name()) == nil then
+     self.object:remove()
+     return
+  end
+    self.object:set_properties({
+        textures = {"dwarf_bar.png",},
+        }
+  )
+end
+
+function elf_bar:on_step(dtime)
+  local wielder = self.wielder
+  if wielder == nil then 
+     self.object:remove()
+     return   
+  elseif minetest.env:get_player_by_name(wielder:get_player_name()) == nil then
+     self.object:remove()
+     return
+  end
+    self.object:set_properties({
+        textures = {"elf_bar.png",},
+        }
+  )
+end
+
+function men_bar:on_step(dtime)
+  local wielder = self.wielder
+  if wielder == nil then 
+     self.object:remove()
+     return   
+  elseif minetest.env:get_player_by_name(wielder:get_player_name()) == nil then
+     self.object:remove()
+     return
+  end
+    self.object:set_properties({
+        textures = {"men_bar.png",},
+        }
+  )
+end
+
+function mordor_bar:on_step(dtime)
+  local wielder = self.wielder
+  if wielder == nil then 
+     self.object:remove()
+     return
+  elseif minetest.env:get_player_by_name(wielder:get_player_name()) == nil then
+     self.object:remove()
+     return
+  end
+  self.object:set_properties({
+        textures = {"mordor_bar.png",},
+        }
+  )
+end
+
+function forsaken_bar:on_step(dtime)
+  local wielder = self.wielder
+  if wielder == nil then 
+     self.object:remove()
+     return
+  elseif minetest.env:get_player_by_name(wielder:get_player_name()) == nil then
+     self.object:remove()
+     return
+  end
+  self.object:set_properties({
+        textures = {"forsaken_bar.png",},
+        }
+  )
+end
+
+--local timer = 0
+minetest.register_on_joinplayer(function(player)
+		for _,player in ipairs(minetest.get_connected_players()) do
+		        local name = player:get_player_name()
+				local pos = player:getpos()
+		        if minetest.check_player_privs(name,{dwarven=true}) then
+				    local pos = player:getpos()
+				    --player:set_physics_override(0.8, 1, 1)
+                    player:set_properties({visual_size = {x=1, y=0.8}})
+					local ent = minetest.env:add_entity(pos, "lottserver:dwarf_bar")
+					if ent~= nil then
+                        ent:set_attach(player, "", {x=0,y=10,z=0}, {x=0,y=0,z=0})
+                        ent:set_attach(player, "", {x=0,y=12,z=0}, {x=0,y=0,z=0})
+                        ent = ent:get_luaentity()
+                        ent.wielder = player
+					end
+				elseif minetest.check_player_privs(name,{elven=true}) then
+				    --player:set_physics_override(1.2, 1, 1)
+                    player:set_properties({visual_size = {x=0.9, y=1.2}})
+					local ent = minetest.env:add_entity(pos, "lottserver:elf_bar")
+					if ent~= nil then
+                        ent:set_attach(player, "", {x=0,y=10,z=0}, {x=0,y=0,z=0})
+                        ent:set_attach(player, "", {x=0,y=12,z=0}, {x=0,y=0,z=0})
+                        ent = ent:get_luaentity()
+                        ent.wielder = player
+					end
+				elseif minetest.check_player_privs(name,{mordor=true}) then
+				    --player:set_physics_override(0.9, 1, 1)
+                    player:set_properties({visual_size = {x=1, y=0.9}})
+					local ent = minetest.env:add_entity(pos, "lottserver:mordor_bar")
+					if ent~= nil then
+                        ent:set_attach(player, "", {x=0,y=10,z=0}, {x=0,y=0,z=0})
+                        ent:set_attach(player, "", {x=0,y=12,z=0}, {x=0,y=0,z=0})
+                        ent = ent:get_luaentity()
+                        ent.wielder = player
+					end
+			    elseif minetest.check_player_privs(name,{men=true}) then
+				    --player:set_physics_override(1, 1, 1)
+                    player:set_properties({visual_size = {x=1, y=1}})
+					local ent = minetest.env:add_entity(pos, "lottserver:men_bar")
+					if ent~= nil then
+                        ent:set_attach(player, "", {x=0,y=10,z=0}, {x=0,y=0,z=0})
+                        ent:set_attach(player, "", {x=0,y=12,z=0}, {x=0,y=0,z=0})
+                        ent = ent:get_luaentity()
+                        ent.wielder = player
+					end
+				elseif minetest.check_player_privs(name,{forsaken=true}) then
+				    --player:set_physics_override(1, 1, 1)
+                    player:set_properties({visual_size = {x=1, y=1}})
+					local ent = minetest.env:add_entity(pos, "lottserver:forsaken_bar")
+					if ent~= nil then
+                        ent:set_attach(player, "", {x=0,y=10,z=0}, {x=0,y=0,z=0})
+                        ent:set_attach(player, "", {x=0,y=12,z=0}, {x=0,y=0,z=0})
+                        ent = ent:get_luaentity()
+                        ent.wielder = player
+					end
+				else
+				    --player:set_physics_override(1, 1, 1)
+                    player:set_properties({visual_size = {x=1, y=1}})
+			    end
+		end
+end)
+
+minetest.register_on_respawnplayer(function(player)
+		for _,player in ipairs(minetest.get_connected_players()) do
+		        local name = player:get_player_name()
+				local pos = player:getpos()
+		        if minetest.check_player_privs(name,{dwarven=true}) then
+				    local pos = player:getpos()
+				    --player:set_physics_override(0.8, 1, 1)
+                    player:set_properties({visual_size = {x=1, y=0.8}})
+					local ent = minetest.env:add_entity(pos, "lottserver:dwarf_bar")
+					if ent~= nil then
+                        ent:set_attach(player, "", {x=0,y=10,z=0}, {x=0,y=0,z=0})
+                        ent:set_attach(player, "", {x=0,y=12,z=0}, {x=0,y=0,z=0})
+                        ent = ent:get_luaentity()
+                        ent.wielder = player
+					end
+				elseif minetest.check_player_privs(name,{elven=true}) then
+				    --player:set_physics_override(1.2, 1, 1)
+                    player:set_properties({visual_size = {x=0.9, y=1.2}})
+					local ent = minetest.env:add_entity(pos, "lottserver:elf_bar")
+					if ent~= nil then
+                        ent:set_attach(player, "", {x=0,y=10,z=0}, {x=0,y=0,z=0})
+                        ent:set_attach(player, "", {x=0,y=12,z=0}, {x=0,y=0,z=0})
+                        ent = ent:get_luaentity()
+                        ent.wielder = player
+					end
+				elseif minetest.check_player_privs(name,{mordor=true}) then
+				    --player:set_physics_override(0.9, 1, 1)
+                    player:set_properties({visual_size = {x=1, y=0.9}})
+					local ent = minetest.env:add_entity(pos, "lottserver:mordor_bar")
+					if ent~= nil then
+                        ent:set_attach(player, "", {x=0,y=10,z=0}, {x=0,y=0,z=0})
+                        ent:set_attach(player, "", {x=0,y=12,z=0}, {x=0,y=0,z=0})
+                        ent = ent:get_luaentity()
+                        ent.wielder = player
+					end
+			    elseif minetest.check_player_privs(name,{men=true}) then
+				    --player:set_physics_override(1, 1, 1)
+                    player:set_properties({visual_size = {x=1, y=1}})
+					local ent = minetest.env:add_entity(pos, "lottserver:men_bar")
+					if ent~= nil then
+                        ent:set_attach(player, "", {x=0,y=10,z=0}, {x=0,y=0,z=0})
+                        ent:set_attach(player, "", {x=0,y=12,z=0}, {x=0,y=0,z=0})
+                        ent = ent:get_luaentity()
+                        ent.wielder = player
+					end
+				elseif minetest.check_player_privs(name,{forsaken=true}) then
+				    --player:set_physics_override(1, 1, 1)
+                    player:set_properties({visual_size = {x=1, y=1}})
+					local ent = minetest.env:add_entity(pos, "lottserver:forsaken_bar")
+					if ent~= nil then
+                        ent:set_attach(player, "", {x=0,y=10,z=0}, {x=0,y=0,z=0})
+                        ent:set_attach(player, "", {x=0,y=12,z=0}, {x=0,y=0,z=0})
+                        ent = ent:get_luaentity()
+                        ent.wielder = player
+					end
+				else
+				    --player:set_physics_override(1, 1, 1)
+                    player:set_properties({visual_size = {x=1, y=1}})
+			    end
+		end
+end)
 
 minetest.register_node("lottserver:tilkal", {
 	tiles = {"default_grass.png"},
@@ -430,4 +779,27 @@ minetest.register_abm({
 		vm:write_to_map()
 		vm:update_map()
 	end,
+})
+
+minetest.register_node("lottserver:war", {
+  description = "War Notification",
+  tiles = {"lottserver_war.png"},
+  drawtype = "signlike",
+  inventory_image = "lottserver_gold.png",
+	wield_image = "lottserver_gold.png",
+	paramtype = "light",
+	paramtype2 = "wallmounted",
+	sunlight_propagates = true,
+	is_ground_content = false,
+	walkable = false,
+	selection_box = {
+		type = "wallmounted",
+	},
+	groups = {core_structure=1},
+	legacy_wallmounted = true,
+	sounds = default.node_sound_defaults(),
+	on_construct = function(pos)
+		local meta = minetest.get_meta(pos)
+		meta:set_string("infotext", "War has begun!")
+   end,
 })

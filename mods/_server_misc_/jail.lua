@@ -46,13 +46,13 @@ minetest.register_globalstep(function(dtime)
         if count > 0.5 then
                 count = 0
                 for _,player in ipairs(minetest.get_connected_players()) do
-		        local name = player:get_player_name()
-		        if minetest.check_player_privs(name,{jailed=true}) then
-                                local pos = player:getpos()
-                                if pos.y < 8000 then
-                                        player:setpos(jailpos)
-                                end
+				    local name = player:get_player_name()
+				    if minetest.check_player_privs(name,{jailed=true}) then
+                        local pos = player:getpos()
+                        if pos.y < 8000 then
+                                player:setpos(jailpos)
                         end
-                end
+                    end
+				end
         end
 end)

@@ -33,7 +33,8 @@ tapestry.colours = {
 	{"mordor",       "Mordor",       "mordor"},
 	{"rohan",       "Rohan",       "rohan"},
 	{"urukhai",    "Uruk Hai",    "urukhai"},
-     {"mercenary",    "Mercenary",    "mercenary"},
+    {"mercenary",    "Mercenary",    "mercenary"},
+	{"war", "War Flag", "war"},
 }
 
 for _, row in ipairs(tapestry.colours) do
