@@ -112,6 +112,9 @@ minetest.register_node(":vessels:glass_bottle", {
 	sounds = default.node_sound_glass_defaults(),
      on_use = function(itemstack, user, pointed_thing)
 		pos = pointed_thing.above
+		if pos == nil then
+		    return itemstack
+		end
 		pos.y = pos.y - 1
 		if (minetest.get_node(pos).name == "lottpotion:cauldron_full") then
 			minetest.remove_node(pos)
@@ -169,6 +172,9 @@ minetest.register_node(":vessels:drinking_glass", {
 	sounds = default.node_sound_glass_defaults(),
      on_use = function(itemstack, user, pointed_thing)
 		pos = pointed_thing.above
+		if pos == nil then
+		    return itemstack
+		end
 		pos.y = pos.y - 1
 		if (minetest.get_node(pos).name == "lottpotion:cauldron_full") then
 			minetest.remove_node(pos)
