@@ -13,6 +13,7 @@ minetest.register_craft({
 		{"olvar:mallornwood", "olvar:mallornwood"}
 	}
 })
+
 doors:register_door("curwe:door_alder", {
 	description = "Alder Door",
 	inventory_image = "curwe_door_alder.png",
@@ -28,6 +29,7 @@ minetest.register_craft({
 		{"olvar:alderwood", "olvar:alderwood"}
 	}
 })
+
 doors:register_door("curwe:door_lebethron", {
 	description = "Lebethron Door",
 	inventory_image = "curwe_door_lebethron.png",
@@ -35,6 +37,7 @@ doors:register_door("curwe:door_lebethron", {
 	tiles_bottom = {"curwe_door_lebethron_b.png", "curwe_edge_lebethron.png"},
 	tiles_top = {"curwe_door_lebethron_a.png", "curwe_edge_lebethron.png"},
 })
+
 minetest.register_craft({
 	output = "curwe:door_lebethron",
 	recipe = {
@@ -43,6 +46,7 @@ minetest.register_craft({
 		{"olvar:lebethronwood", "olvar:lebethronwood"}
 	}
 })
+
 doors:register_door("curwe:door_birch", {
 	description = "Birch Door",
 	inventory_image = "curwe_door_birch.png",
@@ -56,6 +60,22 @@ minetest.register_craft({
 		{"olvar:birchwood", "olvar:birchwood"},
 		{"olvar:birchwood", "olvar:birchwood"},
 		{"olvar:birchwood", "olvar:birchwood"}
+	}
+})
+
+doors:register_door("curwe:door_pine", {
+	description = "Pine Door",
+	inventory_image = "curwe_door_pine.png",
+	groups = {choppy=3,flammable=2,door=1},
+	tiles_bottom = {"curwe_door_pine_b.png", "curwe_edge_pine.png"},
+	tiles_top = {"curwe_door_pine_a.png", "curwe_edge_pine.png"},
+})
+minetest.register_craft({
+	output = "curwe:door_pine",
+	recipe = {
+		{"olvar:pinewood", "olvar:pinewood"},
+		{"olvar:pinewood", "olvar:pinewood"},
+		{"olvar:pinewood", "olvar:pinewood"}
 	}
 })
 
@@ -82,6 +102,28 @@ minetest.register_craft({
 	}
 })
 
+minetest.register_node("curwe:fence_pine", {
+	description = "Pine Fence",
+	drawtype = "fencelike",
+	tiles = {"olvar_pinewood.png"},
+	inventory_image = "curwe_pine_fence.png",
+	wield_image = "curwe_pine_fence.png",
+	paramtype = "light",
+	is_ground_content = false,
+	selection_box = {
+		type = "fixed",
+		fixed = {-1/7, -1/2, -1/7, 1/7, 1/2, 1/7},
+	},
+	groups = {choppy=3,flammable=2},
+})
+
+minetest.register_craft({
+	output = 'curwe:fence_pine_6',
+	recipe = {
+		{'olvar:pinewood', 'olvar:pinewood', 'olvar:pinewood'},
+		{'olvar:pinewood', 'olvar:pinewood', 'olvar:pinewood'},
+	}
+})
 
 minetest.register_node("curwe:fence_birch", {
 	description = "Birch Fence",

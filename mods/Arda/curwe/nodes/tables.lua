@@ -20,9 +20,7 @@ minetest.register_node("curwe:bedside_table",
 		},
 	},
 	groups = {snappy=2,choppy=2,oddly_breakable_by_hand=2,flammable=2}
-}) 
-
-
+})
 
 minetest.register_node("curwe:wood_table",
 	{description = 'Wooden Table',
@@ -46,7 +44,7 @@ minetest.register_node("curwe:wood_table",
 		},
 	},
 	groups = {snappy=2,choppy=3,oddly_breakable_by_hand=2,flammable=2}
-}) 
+})
 minetest.register_craft({
 	output = 'curwe:wood_table',
 	recipe = {
@@ -55,6 +53,7 @@ minetest.register_craft({
 		{'group:stick', '', 'group:stick'},
 	}
 })
+
 minetest.register_node("curwe:wood_chair",
 	{ description = 'Wooden Chair',
 	tiles = {"default_wood.png"},
@@ -87,6 +86,7 @@ minetest.register_craft({
 		{'group:stick', 'group:stick'},
 	}
 })
+
 minetest.register_node("curwe:alder_table",
 	{description = 'Alder Table',
 	tiles = {"olvar_alderwood.png"},
@@ -109,7 +109,7 @@ minetest.register_node("curwe:alder_table",
 		},
 	},
 	groups = {snappy=2,choppy=2,flammable=2}
-}) 
+})
 minetest.register_craft({
 	output = 'curwe:alder_table',
 	recipe = {
@@ -118,6 +118,7 @@ minetest.register_craft({
 		{'group:stick', '', 'group:stick'},
 	}
 })
+
 minetest.register_node("curwe:alder_chair",
 	{ description = 'Alder Chair',
 	tiles = {"olvar_alderwood.png"},
@@ -150,6 +151,7 @@ minetest.register_craft({
 		{'group:stick', 'group:stick'},
 	}
 })
+
 minetest.register_node("curwe:birch_table",
 	{description = 'Birch Table',
 	tiles = {"olvar_birchwood.png"},
@@ -172,7 +174,7 @@ minetest.register_node("curwe:birch_table",
 		},
 	},
 	groups = {snappy=2,choppy=3,flammable=2}
-}) 
+})
 minetest.register_craft({
 	output = 'curwe:birch_table',
 	recipe = {
@@ -181,6 +183,7 @@ minetest.register_craft({
 		{'group:stick', '', 'group:stick'},
 	}
 })
+
 minetest.register_node("curwe:birch_chair",
 	{ description = 'Birch Chair',
 	tiles = {"olvar_birchwood.png"},
@@ -213,6 +216,72 @@ minetest.register_craft({
 		{'group:stick', 'group:stick'},
 	}
 })
+
+minetest.register_node("curwe:pine_table",
+	{description = 'Pine Table',
+	tiles = {"olvar_pinewood.png"},
+	drawtype = "nodebox",
+	sunlight_propagates = true,
+	paramtype = 'light',
+	paramtype2 = "facedir",
+	node_box = {
+		type = "fixed",
+		fixed = {
+			{-0.4,-0.5,-0.4, -0.3,0.4,-0.3},
+			{0.3,-0.5,-0.4, 0.4,0.4,-0.3},
+			{-0.4,-0.5,0.3, -0.3,0.4,0.4},
+			{0.3,-0.5,0.3, 0.4,0.4,0.4},
+			{-0.5,0.4,-0.5, 0.5,0.5,0.5},
+			{-0.4,-0.2,-0.3, -0.3,-0.1,0.3},
+			{0.3,-0.2,-0.4, 0.4,-0.1,0.3},
+			{-0.3,-0.2,-0.4, 0.4,-0.1,-0.3},
+			{-0.3,-0.2,0.3, 0.3,-0.1,0.4},
+		},
+	},
+	groups = {snappy=2,choppy=3,flammable=2}
+})
+minetest.register_craft({
+	output = 'curwe:pine_table',
+	recipe = {
+		{'olvar:pinewood', 'olvar:pinewood', 'olvar:pinewood'},
+		{'group:stick', 'group:stick', 'group:stick'},
+		{'group:stick', '', 'group:stick'},
+	}
+})
+
+minetest.register_node("curwe:pine_chair",
+	{ description = 'Pine Chair',
+	tiles = {"olvar_pinewood.png"},
+	drawtype = "nodebox",
+	sunlight_propagates = true,
+	paramtype = 'light',
+	paramtype2 = "facedir",
+	node_box = {
+		type = "fixed",
+		fixed = {
+			{-0.3,-0.5,0.2, -0.2,0.5,0.3},
+			{0.2,-0.5,0.2, 0.3,0.5,0.3},
+			{-0.3,-0.5,-0.3, -0.2,-0.1,-0.2},
+			{0.2,-0.5,-0.3, 0.3,-0.1,-0.2},
+			{-0.3,-0.1,-0.3, 0.3,0,0.2},
+			{-0.2,0.1,0.25, 0.2,0.4,0.26}
+		},
+	},
+	selection_box = {
+		type = "fixed",
+		fixed = {-0.3, -0.5, -0.3, 0.3, 0.5, 0.3},
+	},
+groups = {snappy=2,choppy=3,flammable=2}
+})
+minetest.register_craft({
+	output = 'curwe:pine_chair',
+	recipe = {
+		{'group:stick', ''},
+		{'olvar:pinewood', 'olvar:pinewood'},
+		{'group:stick', 'group:stick'},
+	}
+})
+
 minetest.register_node("curwe:lebethron_table",
 	{description = 'Lebethron Table',
 	tiles = {"olvar_lebethronwood.png"},
@@ -235,7 +304,7 @@ minetest.register_node("curwe:lebethron_table",
 		},
 	},
 	groups = {snappy=2,choppy=1,flammable=2}
-}) 
+})
 minetest.register_craft({
 	output = 'curwe:lebethron_table',
 	recipe = {
@@ -244,6 +313,7 @@ minetest.register_craft({
 		{'group:stick', '', 'group:stick'},
 	}
 })
+
 minetest.register_node("curwe:lebethron_chair",
 	{ description = 'Lebethron Chair',
 	tiles = {"olvar_lebethronwood.png"},
@@ -276,6 +346,7 @@ minetest.register_craft({
 		{'group:stick', 'group:stick'},
 	}
 })
+
 minetest.register_node("curwe:mallorn_table",
 	{description = 'Mallorn Table',
 	tiles = {"olvar_mallornwood.png"},
@@ -298,7 +369,7 @@ minetest.register_node("curwe:mallorn_table",
 		},
 	},
 	groups = {snappy=2,choppy=1,flammable=2}
-}) 
+})
 minetest.register_craft({
 	output = 'curwe:mallorn_table',
 	recipe = {
@@ -307,6 +378,7 @@ minetest.register_craft({
 		{'group:stick', '', 'group:stick'},
 	}
 })
+
 minetest.register_node("curwe:mallorn_chair",
 	{ description = 'Mallorn Chair',
 	tiles = {"olvar_mallornwood.png"},

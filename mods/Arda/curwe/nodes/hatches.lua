@@ -165,6 +165,82 @@ local function punch(pos)
 		if state == 1 then
 			state = 0
 			minetest.sound_play("door_close", {pos = pos, gain = 0.3, max_hear_distance = 10})
+			tmp_node = {name="curwe:hatch_pine", param1=me.param1, param2=me.param2}
+		else
+			state = 1
+			minetest.sound_play("door_open", {pos = pos, gain = 0.3, max_hear_distance = 10})
+			tmp_node = {name="curwe:hatch_pine_open", param1=me.param1, param2=me.param2}
+		end
+		update_door(pos, tmp_node)
+		meta:set_int("state", state)
+end
+
+minetest.register_node("curwe:hatch_pine", {
+	description = "Pine Hatch",
+	drawtype = "nodebox",
+	tiles = {"curwe_hatch_pinewood.png", "curwe_hatch_pinewood.png",  "curwe_hatch_side.png",  "curwe_hatch_side.png", "curwe_hatch_side.png", "curwe_hatch_side.png"},
+	paramtype = "light",
+	paramtype2 = "facedir",
+	groups = {choppy=1,flammable=2,door=1},
+	sounds = default.node_sound_wood_defaults(),
+	node_box = {
+		type = "fixed",
+		fixed = {-0.5, -0.5, -0.5, 0.5, -0.4, 0.5}
+	},
+	selection_box = {
+		type = "fixed",
+		fixed = {-0.5, -0.5, -0.5, 0.5, -0.4, 0.5}
+	},
+	on_creation = function(pos)
+		state = 0
+	end,
+	on_rightclick = function(pos, node, clicker)
+		punch(pos)
+	end,
+})
+
+minetest.register_node("curwe:hatch_pine_open", {
+	drawtype = "nodebox",
+	tiles = {"curwe_hatch_side.png", "curwe_hatch_side.png",  "curwe_hatch_side.png",  "curwe_hatch_side.png", "curwe_hatch_pinewood_open.png", "curwe_hatch_pinewood_open.png"},
+	paramtype = "light",
+	paramtype2 = "facedir",
+	pointable = true,
+	stack_max = 0,
+	groups = {choppy=1,flammable=2,door=1},
+	climbable = true,
+	sounds = default.node_sound_wood_defaults(),
+	drop = "curwe:hatch_pine",
+	node_box = {
+		type = "fixed",
+		fixed = {-0.5, -0.5, 0.4, 0.5, 0.5, 0.5}
+	},
+	selection_box = {
+		type = "fixed",
+		fixed = {-0.5, -0.5, 0.4, 0.5, 0.5, 0.5}
+	},
+	on_rightclick = function(pos, node, clicker)
+		punch(pos)
+	end,
+})
+
+minetest.register_craft({
+	output = 'curwe:hatch_pine',
+	recipe = {
+		{'olvar:pinewood', 'olvar:pinewood'},
+		{'olvar:pinewood', 'olvar:pinewood'},
+	}
+})
+
+local function punch(pos)
+	local meta = minetest.get_meta(pos)
+	local state = meta:get_int("state")
+	local me = minetest.get_node(pos)
+	local tmp_node
+	local tmp_node2
+	oben = {x=pos.x, y=pos.y+1, z=pos.z}
+		if state == 1 then
+			state = 0
+			minetest.sound_play("door_close", {pos = pos, gain = 0.3, max_hear_distance = 10})
 			tmp_node = {name="curwe:hatch_lebethron", param1=me.param1, param2=me.param2}
 		else
 			state = 1
