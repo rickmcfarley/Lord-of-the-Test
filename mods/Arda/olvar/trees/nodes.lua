@@ -269,10 +269,10 @@ minetest.register_node("olvar:mirkleaf", {
 	visual_scale = 1.3,
 	tiles = {"olvar_mirkleaf.png"},
 	paramtype = "light",
-     sunlight_propagates = false,
+    sunlight_propagates = false,
 	waving = 1,
 	is_ground_content = false,
-	groups = {snappy=3, leafdecay=3, flammable=2, leaves=1, not_in_creative_inventory =1},
+	groups = {snappy=3, leafdecay=3, flammable=2, leaves=1},
 	drop = {
 		max_items = 1,
 		items = {
