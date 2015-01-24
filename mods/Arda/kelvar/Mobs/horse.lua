@@ -5,8 +5,10 @@ local horse = {
 	stepheight = 1.1,
 	visual_size = {x=1,y=1},
 	mesh = "horseh1_model.x",
-	textures = {"kelvar_horse.png"},
-		
+	available_textures = {
+		total = 1,
+		texture_1 = {"kelvar_horse.png"},
+	},		
 	driver = nil,
 	v = 0,
 }
@@ -801,7 +803,10 @@ kelvar:register_mob("kelvar:horse", {
 	hp_min = 5,
      hp_max = 7,
 	collisionbox = {-0.4, -0.01, -0.4, 0.4, 1, 0.4},
-	textures = {"kelvar_horse.png"},
+	available_textures = {
+		total = 1,
+		texture_1 = {"kelvar_horse.png"},
+	},
 	visual = "mesh",
 	mesh = "horse_model.x",
 	makes_footstep_sound = true,
@@ -851,7 +856,10 @@ kelvar:register_mob("kelvar:horsepeg", {
 	hp_min = 5,
      hp_max = 7,
 	collisionbox = {-0.4, -0.01, -0.4, 0.4, 1, 0.4},
-	textures = {"kelvar_horsepeg.png"},
+	available_textures = {
+		total = 1,
+		texture_1 = {"kelvar_horsepeg.png"},
+	},
 	visual = "mesh",
 	mesh = "horse_model.x",
 	makes_footstep_sound = true,
@@ -902,7 +910,10 @@ kelvar:register_mob("kelvar:horseara", {
 	hp_min = 5,
      hp_max = 7,
 	collisionbox = {-0.4, -0.01, -0.4, 0.4, 1, 0.4},
-	textures = {"kelvar_horseara.png"},
+	available_textures = {
+		total = 1,
+		texture_1 = {"kelvar_horseara.png"},
+	},
 	visual = "mesh",
 	mesh = "horse_model.x",
 	makes_footstep_sound = true,
@@ -952,7 +963,10 @@ kelvar:register_mob("kelvar:shirepony", {
 	hp_min = 5,
      hp_max = 7,
 	collisionbox = {-0.4, -0.01, -0.4, 0.4, 1, 0.4},
-	textures = {"kelvar_shirepony.png"},
+	available_textures = {
+		total = 1,
+		texture_1 = {"kelvar_shirepony.png"},
+	},
 	visual = "mesh",
 	mesh = "shirepony_model.x",
 	makes_footstep_sound = true,
@@ -1003,7 +1017,10 @@ kelvar:register_mob("kelvar:shireponyblack", {
 	hp_min = 5,
      hp_max = 7,
 	collisionbox = {-0.4, -0.01, -0.4, 0.4, 1, 0.4},
-	textures = {"kelvar_shireponyblack.png"},
+	available_textures = {
+		total = 1,
+		texture_1 = {"kelvar_shireponyblack.png"},
+	},
 	visual = "mesh",
 	mesh = "shirepony_model.x",
 	makes_footstep_sound = true,

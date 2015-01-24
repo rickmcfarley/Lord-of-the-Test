@@ -624,7 +624,7 @@ function kelvar:register_mob(name, def)
 			local tmp = {
 				lifetimer = self.lifetimer,
 				tamed = self.tamed,
-				textures = { textures = self.textures },
+				textures = def.available_textures["texture_"..math.random(1,def.available_textures["total"])],
 			}
 			return minetest.serialize(tmp)
 		end,
