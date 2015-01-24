@@ -5,7 +5,7 @@ local horse = {
 	stepheight = 1.1,
 	visual_size = {x=1,y=1},
 	mesh = "horseh1_model.x",
-	textures = {"lottmobs_horse.png"},
+	textures = {"kelvar_horse.png"},
 	driver = nil,
 	v = 0,
 }
@@ -93,7 +93,7 @@ function horse:on_step(dtime)
 		p.y = p.y-0.5
 			if is_ground(p) then
 				local v = self.object:getvelocity()
-				v.y = 6
+				v.y = 4
 				self.object:setvelocity(v)
 			end
 		end
@@ -263,7 +263,7 @@ function horsepeg:on_step(dtime)
 		p.y = p.y-0.5
 			if is_ground(p) then
 				local v = self.object:getvelocity()
-				v.y = 6
+				v.y = 4
 				self.object:setvelocity(v)
 			end
 		end
@@ -429,7 +429,7 @@ function horseara:on_step(dtime)
 		p.y = p.y-0.5
 			if is_ground(p) then
 				local v = self.object:getvelocity()
-				v.y = 6
+				v.y = 4
 				self.object:setvelocity(v)
 			end
 		end
@@ -594,7 +594,7 @@ function shireponyblack:on_step(dtime)
 		p.y = p.y-0.5
 			if is_ground(p) then
 				local v = self.object:getvelocity()
-				v.y = 4
+				v.y = 3
 				self.object:setvelocity(v)
 			end
 		end
@@ -759,7 +759,7 @@ function shirepony:on_step(dtime)
 		p.y = p.y-0.5
 			if is_ground(p) then
 				local v = self.object:getvelocity()
-				v.y = 4
+				v.y = 3
 				self.object:setvelocity(v)
 			end
 		end
@@ -948,7 +948,7 @@ kelvar:register_mob("kelvar:horse", {
 	on_rightclick = function(self, clicker)
 		local item = clicker:get_wielded_item()
 		if item:get_name() == "farming:wheat" then
-               clicker:get_inventory():add_item("main", "kelvar:horseh1")
+               minetest.add_entity(self.object:getpos(), "kelvar:horseh1")
                if not minetest.setting_getbool("creative_mode") then
 			     item:take_item()
                     clicker:set_wielded_item(item)
@@ -1001,7 +1001,7 @@ kelvar:register_mob("kelvar:horsepeg", {
 	on_rightclick = function(self, clicker)
 		local item = clicker:get_wielded_item()
 		if item:get_name() == "farming:wheat" then
-               clicker:get_inventory():add_item("main", "kelvar:horsepegh1")
+               minetest.add_entity(self.object:getpos(), "kelvar:horsepegh1")
                if not minetest.setting_getbool("creative_mode") then
 			     item:take_item()
                     clicker:set_wielded_item(item)
@@ -1055,7 +1055,7 @@ kelvar:register_mob("kelvar:horseara", {
 	on_rightclick = function(self, clicker)
 		local item = clicker:get_wielded_item()
 		if item:get_name() == "farming:wheat" then
-               clicker:get_inventory():add_item("main", "kelvar:horsearah1")
+               minetest.add_entity(self.object:getpos(), "kelvar:horsearah1")
                if not minetest.setting_getbool("creative_mode") then
 			     item:take_item()
                     clicker:set_wielded_item(item)
@@ -1109,7 +1109,7 @@ kelvar:register_mob("kelvar:shirepony", {
 	on_rightclick = function(self, clicker)
 		local item = clicker:get_wielded_item()
 		if item:get_name() == "farming:wheat" then
-               clicker:get_inventory():add_item("main", "kelvar:shireponyh1")
+               minetest.add_entity(self.object:getpos(), "kelvar:shireponyh1")
                if not minetest.setting_getbool("creative_mode") then
 			     item:take_item()
                     clicker:set_wielded_item(item)
@@ -1163,7 +1163,7 @@ kelvar:register_mob("kelvar:shireponyblack", {
 	on_rightclick = function(self, clicker)
 		local item = clicker:get_wielded_item()
 		if item:get_name() == "farming:wheat" then
-               clicker:get_inventory():add_item("main", "kelvar:shireponyblackh1")
+               minetest.add_entity(self.object:getpos(), "kelvar:shireponyblackh1")
                if not minetest.setting_getbool("creative_mode") then
 			     item:take_item()
                     clicker:set_wielded_item(item)
