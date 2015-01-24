@@ -79,6 +79,22 @@ minetest.register_craft({
 	}
 })
 
+doors:register_door("curwe:door_junglewood", {
+	description = "Junglewood Door",
+	inventory_image = "curwe_door_junglewood.png",
+	groups = {choppy=3,flammable=2,door=1},
+	tiles_bottom = {"curwe_door_junglewood_b.png", "curwe_edge_junglewood.png"},
+	tiles_top = {"curwe_door_junglewood_a.png", "curwe_edge_junglewood.png"},
+})
+minetest.register_craft({
+	output = "curwe:door_junglewood",
+	recipe = {
+		{"default:junglewood", "default:junglewood"},
+		{"default:junglewood", "default:junglewood"},
+		{"default:junglewood", "default:junglewood"}
+	}
+})
+
 minetest.register_node("curwe:fence_alder", {
 	description = "Alder Fence",
 	drawtype = "fencelike",
@@ -93,7 +109,6 @@ minetest.register_node("curwe:fence_alder", {
 	},
 	groups = {choppy=2,flammable=2},
 })
-
 minetest.register_craft({
 	output = 'curwe:fence_alder 6',
 	recipe = {
@@ -116,7 +131,6 @@ minetest.register_node("curwe:fence_pine", {
 	},
 	groups = {choppy=3,flammable=2},
 })
-
 minetest.register_craft({
 	output = 'curwe:fence_pine_6',
 	recipe = {
@@ -139,12 +153,33 @@ minetest.register_node("curwe:fence_birch", {
 	},
 	groups = {choppy=3,flammable=2},
 })
-
 minetest.register_craft({
 	output = 'curwe:fence_birch 6',
 	recipe = {
 		{'olvar:birchwood', 'olvar:birchwood', 'olvar:birchwood'},
 		{'olvar:birchwood', 'olvar:birchwood', 'olvar:birchwood'},
+	}
+})
+
+minetest.register_node("curwe:fence_junglewood", {
+	description = "Junglewood Fence",
+	drawtype = "fencelike",
+	tiles = {"default_junglewood.png"},
+	inventory_image = "curwe_junglewood_fence.png",
+	wield_image = "curwe_junglewood_fence.png",
+	paramtype = "light",
+	is_ground_content = false,
+	selection_box = {
+		type = "fixed",
+		fixed = {-1/7, -1/2, -1/7, 1/7, 1/2, 1/7},
+	},
+	groups = {choppy=3,flammable=2},
+})
+minetest.register_craft({
+	output = 'curwe:fence_junglewood_6',
+	recipe = {
+		{'default:junglewood', 'default:junglewood', 'default:junglewood'},
+		{'default:junglewood', 'default:junglewood', 'default:junglewood'},
 	}
 })
 
@@ -162,7 +197,6 @@ minetest.register_node("curwe:fence_mallorn", {
 	},
 	groups = {choppy=1,flammable=2},
 })
-
 minetest.register_craft({
 	output = 'curwe:fence_mallorn 6',
 	recipe = {
@@ -185,7 +219,6 @@ minetest.register_node("curwe:fence_lebethron", {
 	},
 	groups = {choppy=1,flammable=2},
 })
-
 minetest.register_craft({
 	output = 'curwe:fence_lebethron 6',
 	recipe = {
@@ -193,4 +226,3 @@ minetest.register_craft({
 		{'olvar:lebethronwood', 'olvar:lebethronwood', 'olvar:lebethronwood'},
 	}
 })
-
