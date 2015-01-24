@@ -25,6 +25,9 @@ LEBCHA = 11
 MALINT = 67
 MALCHA = 11
 
+MIRINT = 67
+MIRCHA = 11
+
 PININT = 67
 PINCHA = 11
 
@@ -252,6 +255,33 @@ minetest.register_node("olvar:mallornleaf", {
 			},
 			{
 				items = {'olvar:mallornleaf'},
+			}
+		}
+	},
+	sounds = default.node_sound_leaves_defaults(),
+})
+
+
+minetest.register_alias("cemen:mirkleaves", "olvar:mirkleaf")
+minetest.register_node("olvar:mirkleaf", {
+	description = "Mirk Leaf",
+	drawtype = "allfaces_optional",
+	visual_scale = 1.3,
+	tiles = {"olvar_mirkleaf.png"},
+	paramtype = "light",
+     sunlight_propagates = false,
+	waving = 1,
+	is_ground_content = false,
+	groups = {snappy=3, leafdecay=3, flammable=2, leaves=1, not_in_creative_inventory =1},
+	drop = {
+		max_items = 1,
+		items = {
+			{
+				items = {'olvar:mirksapling'},
+				rarity = 20,
+			},
+			{
+				items = {'olvar:mirkleaf'},
 			}
 		}
 	},
@@ -541,6 +571,19 @@ minetest.register_node("olvar:mallornsapling", {
 	tiles = {"olvar_mallornsapling.png"},
 	inventory_image = "olvar_mallornsapling.png",
 	wield_image = "olvar_mallornsapling.png",
+	paramtype = "light",
+	walkable = false,
+	groups = {snappy=2,dig_immediate=3,flammable=2},
+	sounds = default.node_sound_defaults(),
+})
+
+minetest.register_node("olvar:mirksapling", {
+	description = "Mirkwood Sapling",
+	drawtype = "plantlike",
+	visual_scale = 1.0,
+	tiles = {"olvar_mirksapling.png"},
+	inventory_image = "olvar_mirksapling.png",
+	wield_image = "olvar_mirksapling.png",
 	paramtype = "light",
 	walkable = false,
 	groups = {snappy=2,dig_immediate=3,flammable=2},

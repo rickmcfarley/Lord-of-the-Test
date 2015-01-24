@@ -301,6 +301,119 @@ function lottplants_smallmallorntree(pos)
 	end
 end
 
+--Mirk large
+
+function add_tree_branch_mirktree(pos)
+	minetest.env:add_node(pos, {name="default:jungletree"})
+	for i = math.floor(math.random(2)), -math.floor(math.random(2)), -1 do
+		for k = math.floor(math.random(2)), -math.floor(math.random(2)), -1 do
+			local p = {x=pos.x+i, y=pos.y, z=pos.z+k}
+			local n = minetest.env:get_node(p)
+			if (n.name=="air") then
+				minetest.env:add_node(p, {name="olvar:mirkleaf"})
+			end
+			local chance = math.abs(i+k)
+			if (chance < 1) then
+				p = {x=pos.x+i, y=pos.y+1, z=pos.z+k}
+				n = minetest.env:get_node(p)
+				if (n.name=="air") then
+					minetest.env:add_node(p, {name="olvar:mirkleaf"})
+				end
+			end
+		end
+	end
+end
+
+function olvar_mirktree(pos)
+    local height = 5 + math.random(1)
+		if height < 1 then
+			for i = height, -2, -1 do
+				local p = {x=pos.x, y=pos.y+i, z=pos.z}
+				minetest.env:add_node(p, {name="default:jungletree"})
+				if i == height then
+					add_tree_branch_mirktree({x=pos.x, y=pos.y+height+math.random(0, 1), z=pos.z})
+					add_tree_branch_mirktree({x=pos.x+1, y=pos.y+i-math.random(2), z=pos.z})
+					add_tree_branch_mirktree({x=pos.x-1, y=pos.y+i-math.random(2), z=pos.z})
+					add_tree_branch_mirktree({x=pos.x, y=pos.y+i-math.random(2), z=pos.z+1})
+					add_tree_branch_mirktree({x=pos.x, y=pos.y+i-math.random(2), z=pos.z-1})
+				end
+				if i < 0 then
+					minetest.env:add_node({x=pos.x+1, y=pos.y+i-math.random(2), z=pos.z}, {name="default:jungletree"})
+					minetest.env:add_node({x=pos.x, y=pos.y+i-math.random(2), z=pos.z+1}, {name="default:jungletree"})
+					minetest.env:add_node({x=pos.x-1, y=pos.y+i-math.random(2), z=pos.z}, {name="default:jungletree"})
+					minetest.env:add_node({x=pos.x, y=pos.y+i-math.random(2), z=pos.z-1}, {name="default:jungletree"})
+				end
+				if (math.sin(i/height*i) < 0.2 and i > 3 and math.random(0,2) < 1.5) then
+					local branch_pos = {x=pos.x+math.random(0,1), y=pos.y+i, z=pos.z-math.random(0,1)}
+					add_tree_branch_mirktree(branch_pos)
+				end
+			end
+		else
+			for i = height, -5, -1 do
+				if (math.sin(i/height*i) < 0.2 and i > 3 and math.random(0,2) < 1.5) then
+					local branch_pos = {x=pos.x+math.random(0,1), y=pos.y+i, z=pos.z-math.random(0,1)}
+					add_tree_branch_mirktree(branch_pos)
+				end
+				if i < math.random(0,1) then
+					minetest.env:add_node({x=pos.x+1, y=pos.y+i, z=pos.z+1}, {name="default:jungletree"})
+					minetest.env:add_node({x=pos.x+2, y=pos.y+i, z=pos.z-1}, {name="default:jungletree"})
+					minetest.env:add_node({x=pos.x, y=pos.y+i, z=pos.z-2}, {name="default:jungletree"})
+					minetest.env:add_node({x=pos.x-1, y=pos.y+i, z=pos.z}, {name="default:jungletree"})
+				end
+				if i == height then
+					add_tree_branch_mirktree({x=pos.x+1, y=pos.y+i, z=pos.z+1})
+					add_tree_branch_mirktree({x=pos.x+2, y=pos.y+i, z=pos.z-1})
+					add_tree_branch_mirktree({x=pos.x, y=pos.y+i, z=pos.z-2})
+					add_tree_branch_mirktree({x=pos.x-1, y=pos.y+i, z=pos.z})
+					add_tree_branch_mirktree({x=pos.x+1, y=pos.y+i, z=pos.z+2})
+					add_tree_branch_mirktree({x=pos.x+3, y=pos.y+i, z=pos.z-1})
+					add_tree_branch_mirktree({x=pos.x, y=pos.y+i, z=pos.z-3})
+					add_tree_branch_mirktree({x=pos.x-2, y=pos.y+i, z=pos.z})
+					add_tree_branch_mirktree({x=pos.x+1, y=pos.y+i, z=pos.z})
+					add_tree_branch_mirktree({x=pos.x+1, y=pos.y+i, z=pos.z-1})
+					add_tree_branch_mirktree({x=pos.x, y=pos.y+i, z=pos.z-1})
+					add_tree_branch_mirktree({x=pos.x, y=pos.y+i, z=pos.z})
+				else
+					minetest.env:add_node({x=pos.x+1, y=pos.y+i, z=pos.z}, {name="default:jungletree"})
+					minetest.env:add_node({x=pos.x+1, y=pos.y+i, z=pos.z-1}, {name="default:jungletree"})
+					minetest.env:add_node({x=pos.x, y=pos.y+i, z=pos.z-1}, {name="default:jungletree"})
+					minetest.env:add_node({x=pos.x, y=pos.y+i, z=pos.z}, {name="default:jungletree"})
+				end
+			end
+		end
+end
+
+--Mirk Small
+
+function olvar_smallmirktree(pos)
+	for j = -3, 7 do
+		if j == 6 then
+			for i = -4, 4 do
+			for k = -4, 4 do
+				if math.random(20) ~= 10 then
+					minetest.add_node({x=pos.x+i,y=pos.y+j+math.random(1, 2),z=pos.z+k},{name="olvar:mirkleaf"})
+				end
+			end
+			end
+      for i = -1, 1 do
+			for k = -1, 1 do
+          if math.abs(i) + math.abs(k) == 2 then
+            minetest.add_node({x=pos.x+i,y=pos.y+j,z=pos.z+k},{name="default:jungletree"})
+          end
+      end
+      end
+		elseif j == 7 then
+			for i = -2, 2, 4 do
+			for k = -2, 2, 4 do
+				minetest.add_node({x=pos.x+i,y=pos.y+j,z=pos.z+k},{name="default:jungletree"})
+			end
+			end
+		else
+			minetest.add_node({x=pos.x,y=pos.y+j,z=pos.z},{name="default:jungletree"})
+		end
+	end
+end
+
 -- Oaks
 
 function olvar_oaktree(pos)
@@ -559,11 +672,26 @@ minetest.register_abm({
     nodenames = {"olvar:mallornsapling"},
     interval = MALINT,
     chance = MALCHA,
-   action = function(pos, node, active_object_count, active_object_count_wider, x, y, z, area, data)
+   action = function(pos, node, active_object_count, active_object_count_wider)
 		if math.random(2) == 1 then
 			lottplants_mallorntree(pos)
 		else
 			lottplants_smallmallorntree(pos)
+		end
+    end,
+})
+
+--Mirk Sapling
+
+minetest.register_abm({
+    nodenames = {"olvar:mirksapling"},
+    interval = MIRINT,
+    chance = MIRCHA,
+   action = function(pos, node, active_object_count, active_object_count_wider)
+		if math.random(2) == 1 then
+			lottplants_mirktree(pos)
+		else
+			lottplants_smallmirktree(pos)
 		end
     end,
 })
