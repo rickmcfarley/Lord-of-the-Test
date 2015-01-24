@@ -392,6 +392,15 @@ minetest.register_node("olvar:aldertree", {
 	on_place = minetest.rotate_node
 })
 
+minetest.register_node("olvar:pinetree", {
+	description = "pine Tree",
+	tiles = {"olvar_pinetree_top.png", "olvar_pinetree_top.png", "olvar_pinetree.png"},
+	paramtype2 = "facedir",
+	groups = {tree=1,choppy=3,flammable=2},
+	sounds = default.node_sound_wood_defaults(),
+	on_place = minetest.rotate_node
+})
+
 minetest.register_node("olvar:birchtree", {
 	description = "Birch Tree",
 	tiles = {"olvar_birchtree_top.png", "olvar_birchtree_top.png", "olvar_birchtree.png"},
@@ -667,6 +676,13 @@ minetest.register_node("olvar:birchwood", {
 	sounds = default.node_sound_wood_defaults(),
 })
 
+minetest.register_node("olvar:pinewood", {
+	description = "pine Planks",
+	tiles = {"olvar_pinewood.png"},
+	groups = {choppy=3,flammable=3,wood=1},
+	sounds = default.node_sound_wood_defaults(),
+})
+
 minetest.register_node("olvar:lebethronwood", {
 	description = "Lebethron Planks",
 	tiles = {"olvar_lebethronwood.png"},
@@ -696,6 +712,13 @@ stairs.register_stair_and_slab("birchwood", "olvar:birchwood",
 		"Birch Wood Stair",
 		"Birch Wood Slab",
 		default.node_sound_wood_defaults())
+
+stairs.register_stair_and_slab("pinewood", "olvar:pinewood",
+		{snappy=2,choppy=3,flammable=3},
+		{"olvar_pinewood.png"},
+		"Pine Wood Stair",
+		"Pine Wood Slab",
+		default.node_sound_wood_defaults())
 	
 stairs.register_stair_and_slab("lebethronwood", "olvar:lebethronwood",
 		{snappy=2,choppy=1,flammable=3},
@@ -723,6 +746,13 @@ minetest.register_craft({
 	output = 'olvar:alderwood 4',
 	recipe = {
 		{'olvar:aldertree'},
+	}
+})
+
+minetest.register_craft({
+	output = 'olvar:pinewood 4',
+	recipe = {
+		{'olvar:pinetree'},
 	}
 })
 
