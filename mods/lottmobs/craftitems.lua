@@ -1,3 +1,8 @@
+minetest.register_craftitem("lottmobs:spiderpoison", {
+	description = "Spider Poison",
+	inventory_image = "lottmobs_spiderpoison.png",
+})
+
 minetest.register_craftitem("lottmobs:meat", {
 	description = "Cooked Meat",
 	inventory_image = "lottmobs_meat.png",
